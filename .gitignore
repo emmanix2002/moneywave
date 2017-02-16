@@ -45,3 +45,4 @@ fabric.properties
 
 vendor/
 .env
+.idea/
