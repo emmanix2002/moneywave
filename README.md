@@ -75,12 +75,12 @@ Unlike **method one**, you'll need to store the keys somewhere and provide them 
 
 <a name="usage">Usage</a>
 --------
-When the client is instantiated **see** [configuration](#configuration), it automatically starts up the 
+When the client is instantiated (**see** [configuration](#configuration)), it automatically starts up the 
 `VerifyMerchant` service. This service gets an `access token` from the Moneywave service that will be used 
 to **authorize** every other request you make against the API.    
 Every `access token` has a lifespan of `2 hours`. In your application, you have one of 2 options:    
 
-- Save the retrieve token to your `Session` to use it across multiple requests
+- Save the retrieved token to your `Session` to use it across multiple requests
 - Allow the library request one for every call made to the API  
 
 For the first option, take a look at the sample files in the `examples` directory. You'll see something like 
@@ -188,4 +188,4 @@ This method allows you to add each beneficiary account in turn:
     $bulkDisbursement->addRecipient(Banks::ACCESS_BANK, '0690000004', 1)
                      ->addRecipient(Banks::ACCESS_BANK, '0690000005', 2);
                          
-Look at the `examples.disburse_bulk.php` file for the full example.
+Look at the `examples/disburse_bulk.php` file for the full example.
