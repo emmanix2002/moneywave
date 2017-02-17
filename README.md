@@ -7,6 +7,7 @@ You can check out the documentation to see all that is available: [https://money
 * [Configuration](#configuration)
 * [Usage](#usage)
 * [Services](#services)
+* [Handling Responses](#handling-responses)
 
 
 <a name="quickstart">Quickstart</a>
@@ -189,3 +190,79 @@ This method allows you to add each beneficiary account in turn:
                      ->addRecipient(Banks::ACCESS_BANK, '0690000005', 2);
                          
 Look at the `examples/disburse_bulk.php` file for the full example.
+
+<a name="handling-responses">Handling Responses</a>
+----------
+If all the required fields on the **service object** (see [services](#services)) have been set, the call to `send()` 
+will return a _response object_ which is an instance of the `MoneywaveResponse` class.    
+Continuing with the _Account Validation_ example above:    
+
+    $response = $accountValidation->send();
+    
+A successful response `JSON` will be of this form:   
+
+    {
+        status: "success",
+        data: {
+            name: "MICHAEL JACKSON"
+        }
+    }
+    
+While a failure response `JSON` will be of the form:    
+
+    {
+        status: "error",
+        message: "error message description",
+        code: "error code string; e.g. INVALID_ID",
+        data: "data string -- this is absent most of the time"
+    }
+    
+The `$response` variable presents a few functions that can be used to work with this data:
+
+    # was a request successful?
+    if ($response->isSuccessful()) {
+        # do something with the returned data
+        $name = $response->getData()['name'];
+    } else {
+        # this was a failure
+        $message = $response->getMessage();
+        $code = $response->getCode();
+        $data = $response->getData();
+    }
+    
+_**NOTE**_: All keys within the response `JSON` are also accessible from the **response object** as properties:
+
+    if ($response->isSuccessful()) {
+        $name = $response->getData()['name'];
+    } else {
+        $message = $response->message;
+        $code = $response->code;
+    }
+    
+As another example, the response from the `VerifyMerchant` service looks like this:
+
+    {
+        status: "success",
+        token: "" // a valid merchant token
+    }
+    
+Using the response, you'll have to do this:
+
+    $response = $verifyService->send();
+    if ($response->isSuccessful()) {
+        $token = $response->token;
+    } else {
+        # process the error response as you normally would
+    }
+    
+The table below describes the methods defined on the `MoneywaveResponse` object:
+
+| Method            | Return Type   | Description                               |
+| ----------------- | ------------- | ----------------------------------------- |
+| getRawResponse()  | string        | the JSON response from the API            |
+| isSuccessful()    | bool          | checks if the `status` key `=== "success"`|
+| getCode()         | string        | returns the `code` key                    |
+| getMessage()      | string        | returns the `message` attribute           |
+| getData()         | array         | returns the `data` key                    |
+
+**NOTE**: For responses where `data` is a string; it returns this array `[data: string]`
