@@ -3,6 +3,7 @@
 namespace Emmanix2002\Moneywave;
 
 use Dotenv\Dotenv;
+use Dotenv\Exception\InvalidPathException;
 use Emmanix2002\Moneywave\Enum\Environment;
 use Emmanix2002\Moneywave\Exception\UnknownServiceException;
 use Emmanix2002\Moneywave\Service\AccountNumberValidation;
@@ -105,13 +106,13 @@ class Moneywave
         string $environment = null,
         LoggerInterface $logger = null
     ) {
+        $this->logger = $logger ?: $this->setupLogger();
+        $this->accessToken = $accessToken ?: null;
         $this->loadSettings();
         $env = $environment ?: getenv('MONEYWAVE_ENV');
-        $this->logger = $logger ?: $this->setupLogger();
         $this->apiKey = $apiKey ?: getenv('MONEYWAVE_API_KEY');
         $this->secretKey = $secretKey ?: getenv('MONEYWAVE_SECRET_KEY');
         $this->setEnvironment($env);
-        $this->accessToken = $accessToken ?: null;
         if (empty($this->accessToken)) {
             $this->verifyMerchant();
         }
@@ -180,11 +181,15 @@ class Moneywave
      */
     private function loadSettings(): Moneywave
     {
-        $vendorDir = dirname(__DIR__, 3);
-        $loadDir = strpos($vendorDir, '/vendor') === false ? dirname(__DIR__) : dirname($vendorDir);
-        # if the /vendor path doesn't exist in the variable, use the current directory, else use the project dir
-        $dotEnv = new Dotenv($loadDir);
-        $dotEnv->load();
+        try {
+            $vendorDir = dirname(__DIR__, 3);
+            $loadDir = strpos($vendorDir, PATH_SEPARATOR.'vendor') === false ? dirname(__DIR__) : dirname($vendorDir);
+            # if the /vendor path doesn't exist in the variable, use the current directory, else use the project dir
+            $dotEnv = new Dotenv($loadDir);
+            $dotEnv->load();
+        } catch (InvalidPathException $e) {
+            $this->logger->error($e->getMessage());
+        }
         return $this;
     }
     
