@@ -1,4 +1,11 @@
 # Moneywave
+
+[![Latest Version on Packagist][ico-version]][link-packagist]
+[![Software License][ico-license]](LICENSE.md)
+[![Build Status][ico-travis]][link-travis]
+[![Quality Score][ico-code-quality]][link-code-quality]
+[![Total Downloads][ico-downloads]][link-downloads]
+
 A PHP library for consuming the Moneywave API services.    
 You can check out the documentation to see all that is available: [https://moneywave.flutterwave.com/api](https://moneywave.flutterwave.com/api)     
 
@@ -266,3 +273,16 @@ The table below describes the methods defined on the `MoneywaveResponse` object:
 | getData()         | array         | returns the `data` key                    |
 
 **NOTE**: For responses where `data` is a string; it returns this array `[data: string]`
+
+
+[ico-version]: https://img.shields.io/packagist/v/emmanix2002/moneywave.svg?style=flat-square
+[ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
+[ico-travis]: https://img.shields.io/travis/emmanix2002/moneywave/master.svg?style=flat-square
+[ico-code-quality]: https://img.shields.io/scrutinizer/g/emmanix2002/moneywave.svg?style=flat-square
+[ico-downloads]: https://img.shields.io/packagist/dt/emmanix2002/moneywave.svg?style=flat-square
+
+[link-packagist]: https://packagist.org/packages/emmanix2002/moneywave
+[link-travis]: https://travis-ci.org/emmanix2002/moneywave
+[link-code-quality]: https://scrutinizer-ci.com/g/emmanix2002/moneywave
+[link-downloads]: https://packagist.org/packages/emmanix2002/moneywave
+[link-author]: https://github.com/emmanix2002

@@ -20,6 +20,7 @@ use Emmanix2002\Moneywave\Service\VerifyMerchant;
 use Emmanix2002\Moneywave\Service\WalletBalance;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\BadResponseException;
+use GuzzleHttp\Exception\ConnectException;
 use GuzzleHttp\RequestOptions;
 use Monolog\Handler\ChromePHPHandler;
 use Monolog\Handler\ErrorLogHandler;
@@ -164,11 +165,15 @@ class Moneywave
             throw new \InvalidArgumentException('The environment must be one of: '.implode(', ', $options));
         }
         $this->environment = $environment;
-        $this->httpClient = new Client([
-            'base_uri' => $this->envUrls[$this->environment],
-            RequestOptions::TIMEOUT => 60.0,
-            RequestOptions::CONNECT_TIMEOUT => 60.0
-        ]);
+        try {
+            $this->httpClient = new Client([
+                'base_uri' => $this->envUrls[$this->environment],
+                RequestOptions::TIMEOUT => 60.0,
+                RequestOptions::CONNECT_TIMEOUT => 60.0
+            ]);
+        } catch (ConnectException $e) {
+            $this->logger->error($e->getMessage());
+        }
         return $this;
     }
     
