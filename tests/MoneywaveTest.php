@@ -14,6 +14,7 @@ use Emmanix2002\Moneywave\Service\QueryCardToAccountTransfer;
 use Emmanix2002\Moneywave\Service\QueryDisbursement;
 use Emmanix2002\Moneywave\Service\RetryFailedTransfer;
 use Emmanix2002\Moneywave\Service\TotalChargeToCard;
+use Emmanix2002\Moneywave\Service\ValidateTransfer;
 use Emmanix2002\Moneywave\Service\VerifyMerchant;
 use Emmanix2002\Moneywave\Service\WalletBalance;
 use PHPUnit\Framework\TestCase;
@@ -76,7 +77,8 @@ class MoneywaveTest extends TestCase
             'retry failed transfer' => ['RetryFailedTransfer', RetryFailedTransfer::class],
             'total charge to card' => ['TotalChargeToCard', TotalChargeToCard::class],
             'verify merchant' => ['VerifyMerchant', VerifyMerchant::class],
-            'wallet balance' => ['WalletBalance', WalletBalance::class]
+            'wallet balance' => ['WalletBalance', WalletBalance::class],
+            'validate transfer' => ['ValidateTransfer', ValidateTransfer::class]
         ];
     }
 }
