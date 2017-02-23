@@ -165,15 +165,11 @@ class Moneywave
             throw new \InvalidArgumentException('The environment must be one of: '.implode(', ', $options));
         }
         $this->environment = $environment;
-        try {
-            $this->httpClient = new Client([
-                'base_uri' => $this->envUrls[$this->environment],
-                RequestOptions::TIMEOUT => 60.0,
-                RequestOptions::CONNECT_TIMEOUT => 60.0
-            ]);
-        } catch (ConnectException $e) {
-            $this->logger->error($e->getMessage());
-        }
+        $this->httpClient = new Client([
+            'base_uri' => $this->envUrls[$this->environment],
+            RequestOptions::TIMEOUT => 60.0,
+            RequestOptions::CONNECT_TIMEOUT => 60.0
+        ]);
         return $this;
     }
     
@@ -188,7 +184,7 @@ class Moneywave
     {
         try {
             $vendorDir = dirname(__DIR__, 3);
-            $loadDir = strpos($vendorDir, PATH_SEPARATOR.'vendor') === false ? dirname(__DIR__) : dirname($vendorDir);
+            $loadDir = substr($vendorDir, -6) === 'vendor' ? dirname($vendorDir) : dirname(__DIR__);
             # if the /vendor path doesn't exist in the variable, use the current directory, else use the project dir
             $dotEnv = new Dotenv($loadDir);
             $dotEnv->load();
@@ -276,6 +272,8 @@ class Moneywave
                 'status code' => $e->getResponse()->getStatusCode(),
                 'response' => $e->getResponse()->getBody()->getContents()
             ]);
+        } catch (ConnectException $e) {
+            $this->logger->error($e->getMessage());
         }
     }
 }
