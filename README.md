@@ -3,7 +3,6 @@
 [![Latest Version on Packagist][ico-version]][link-packagist]
 [![Software License][ico-license]](LICENSE.md)
 [![Build Status][ico-travis]][link-travis]
-[![Quality Score][ico-code-quality]][link-code-quality]
 [![Total Downloads][ico-downloads]][link-downloads]
 
 A PHP library for consuming the Moneywave API services.    
@@ -140,6 +139,7 @@ The table below describes all the services:
 | TotalChargeToCard         | createTotalChargeToCardService        |      
 | VerifyMerchant            | createVerifyMerchantService           |      
 | WalletBalance             | createWalletBalanceService            |      
+| ValidateTransfer          | createValidateTransferService         |      
 
 
 Each service has a list of properties that must be set on it before it can be sent to the API; if one or more of 
@@ -180,6 +180,10 @@ they'll be automatically given their required value by the library. Find them li
 #### Special Services
 Just as there're special fields, there're also some special service objects, that present more than the regular: 
 `send()` method.    
+
+##### createValidateTransferService
+This service will usually be called after a success response from the `CardToBankAccount`, or `CardToWallet` call.    
+You will normally use it to authorise a transfer request.
 
 ##### createDisburseBulkService()
 This service is for disbursing cash from your `Moneywave` wallet to multiple bank accounts. It has a special method on 

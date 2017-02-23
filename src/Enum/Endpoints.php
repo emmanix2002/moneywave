@@ -13,5 +13,6 @@ class Endpoints
     const RESOLVE_ACCOUNT = 'v1/resolve/account';
     const TRANSFER = 'v1/transfer';
     const TRANSFER_RETRY = 'v1/transfer/disburse/retry';
+    const TRANSFER_VALIDATE = '/v1/transfer/charge/auth/account';
     const WALLET = 'v1/wallet';
 }

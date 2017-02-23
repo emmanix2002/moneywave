@@ -16,6 +16,7 @@ use Emmanix2002\Moneywave\Service\QueryCardToAccountTransfer;
 use Emmanix2002\Moneywave\Service\QueryDisbursement;
 use Emmanix2002\Moneywave\Service\RetryFailedTransfer;
 use Emmanix2002\Moneywave\Service\TotalChargeToCard;
+use Emmanix2002\Moneywave\Service\ValidateTransfer;
 use Emmanix2002\Moneywave\Service\VerifyMerchant;
 use Emmanix2002\Moneywave\Service\WalletBalance;
 use GuzzleHttp\Client;
@@ -60,6 +61,7 @@ use Psr\Log\LoggerInterface;
  * @method TotalChargeToCard            createTotalChargeToCardService()
  * @method VerifyMerchant               createVerifyMerchantService()
  * @method WalletBalance                createWalletBalanceService()
+ * @method ValidateTransfer             createValidateTransferService()
  *
  * @link https://moneywave.flutterwave.com/api
  */

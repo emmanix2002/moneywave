@@ -1,10 +1,11 @@
 <?php
 
-namespace Emmanix2002\Moneywave\Service;
+namespace Emmanix2002\Moneywave\Tests\Service;
 
 use Emmanix2002\Moneywave\Enum\Environment;
 use Emmanix2002\Moneywave\Exception\ValidationException;
 use Emmanix2002\Moneywave\Moneywave;
+use Emmanix2002\Moneywave\Service\RetryFailedTransfer;
 use PHPUnit\Framework\TestCase;
 
 class RetryFailedTransferTest extends TestCase
