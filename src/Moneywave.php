@@ -141,7 +141,6 @@ class Moneywave
             case 'createService':
                 $serviceName = substr($name, 6, -7);
                 $className = __NAMESPACE__.'\\Service\\'.$serviceName;
-                $this->logger->info('Create service', ['service' => $serviceName, 'class' => $className]);
                 if (!class_exists($className)) {
                     throw new UnknownServiceException('Unknown service '.$serviceName);
                 }
@@ -191,7 +190,7 @@ class Moneywave
             $dotEnv = new Dotenv($loadDir);
             $dotEnv->load();
         } catch (InvalidPathException $e) {
-            $this->logger->error($e->getMessage());
+            $this->logger->debug($e->getMessage());
         }
         return $this;
     }
@@ -266,16 +265,7 @@ class Moneywave
     public function verifyMerchant()
     {
         $verifyService = $this->createVerifyMerchantService();
-        try {
-            $mvVerify = $verifyService->send();
-            $this->accessToken = $mvVerify->isSuccessful() ? $mvVerify->token : '';
-        } catch (BadResponseException $e) {
-            $this->logger->error($e->getMessage(), [
-                'status code' => $e->getResponse()->getStatusCode(),
-                'response' => $e->getResponse()->getBody()->getContents()
-            ]);
-        } catch (ConnectException $e) {
-            $this->logger->error($e->getMessage());
-        }
+        $mvVerify = $verifyService->send();
+        $this->accessToken = $mvVerify->isSuccessful() ? $mvVerify->token : '';
     }
 }

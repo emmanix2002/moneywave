@@ -6,6 +6,7 @@ use Emmanix2002\Moneywave\Exception\ValidationException;
 use Emmanix2002\Moneywave\Moneywave;
 use Emmanix2002\Moneywave\MoneywaveResponse;
 use GuzzleHttp\Exception\BadResponseException;
+use GuzzleHttp\Exception\ConnectException;
 use GuzzleHttp\RequestOptions;
 
 abstract class AbstractService implements ServiceInterface
@@ -114,7 +115,6 @@ abstract class AbstractService implements ServiceInterface
         if (!empty($this->moneyWave->getAccessToken())) {
             $headers['Authorization'] = $this->moneyWave->getAccessToken();
         }
-        $this->moneyWave->getLogger()->info('Request Headers', $headers);
         try {
             $response = $this->moneyWave->getHttpClient()->request($this->getRequestMethod(), $this->getRequestPath(), [
                 RequestOptions::FORM_PARAMS => $this->getPayload(),
@@ -122,7 +122,19 @@ abstract class AbstractService implements ServiceInterface
             ]);
             return new MoneywaveResponse((string) $response->getBody());
         } catch (BadResponseException $e) {
+            # in the case of a failure, let's know the status
+            $e->getRequest()->getBody()->rewind();
+            $size = $e->getRequest()->getBody()->getSize() ?: 1024;
+            $bodyParams = [];
+            parse_str($e->getRequest()->getBody()->read($size), $bodyParams);
+            $this->moneyWave->getLogger()->error(
+                $e->getResponse()->getStatusCode().': '.$e->getResponse()->getReasonPhrase(),
+                ['endpoint' => $e->getRequest()->getUri()->getPath(), 'params' => $bodyParams]
+            );
             return new MoneywaveResponse((string) $e->getResponse()->getBody());
+        } catch (ConnectException $e) {
+            $this->moneyWave->getLogger()->error($e->getMessage());
+            return new MoneywaveResponse('{"status": "error", "data": "'.$e->getMessage().'"}');
         }
     }
     
