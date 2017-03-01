@@ -117,7 +117,7 @@ abstract class AbstractService implements ServiceInterface
         }
         try {
             $response = $this->moneyWave->getHttpClient()->request($this->getRequestMethod(), $this->getRequestPath(), [
-                RequestOptions::FORM_PARAMS => $this->getPayload(),
+                RequestOptions::JSON => $this->getPayload(),
                 RequestOptions::HEADERS => $headers
             ]);
             return new MoneywaveResponse((string) $response->getBody());
@@ -125,11 +125,16 @@ abstract class AbstractService implements ServiceInterface
             # in the case of a failure, let's know the status
             $e->getRequest()->getBody()->rewind();
             $size = $e->getRequest()->getBody()->getSize() ?: 1024;
-            $bodyParams = [];
-            parse_str($e->getRequest()->getBody()->read($size), $bodyParams);
+            $bodyParams = json_decode($e->getRequest()->getBody()->read($size), true);
+            $serverResponse = (string) $e->getResponse()->getBody();
+            $jsonData = json_decode($serverResponse);
             $this->moneyWave->getLogger()->error(
                 $e->getResponse()->getStatusCode().': '.$e->getResponse()->getReasonPhrase(),
-                ['endpoint' => $e->getRequest()->getUri()->getPath(), 'params' => $bodyParams]
+                [
+                    'endpoint' => $e->getRequest()->getUri()->getPath(),
+                    'params' => $bodyParams,
+                    'response' => $jsonData ?: $serverResponse
+                ]
             );
             return new MoneywaveResponse((string) $e->getResponse()->getBody());
         } catch (ConnectException $e) {

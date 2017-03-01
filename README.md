@@ -137,9 +137,9 @@ The table below describes all the services:
 | QueryDisbursement         | createQueryDisbursementService        |      
 | RetryFailedTransfer       | createRetryFailedTransferService      |      
 | TotalChargeToCard         | createTotalChargeToCardService        |      
+| ValidateTransfer          | createValidateTransferService         |      
 | VerifyMerchant            | createVerifyMerchantService           |      
 | WalletBalance             | createWalletBalanceService            |      
-| ValidateTransfer          | createValidateTransferService         |      
 
 
 Each service has a list of properties that must be set on it before it can be sent to the API; if one or more of 
