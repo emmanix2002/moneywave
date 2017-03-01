@@ -76,9 +76,9 @@ class MoneywaveTest extends TestCase
             'query disbursement' => ['QueryDisbursement', QueryDisbursement::class],
             'retry failed transfer' => ['RetryFailedTransfer', RetryFailedTransfer::class],
             'total charge to card' => ['TotalChargeToCard', TotalChargeToCard::class],
+            'validate transfer' => ['ValidateTransfer', ValidateTransfer::class],
             'verify merchant' => ['VerifyMerchant', VerifyMerchant::class],
-            'wallet balance' => ['WalletBalance', WalletBalance::class],
-            'validate transfer' => ['ValidateTransfer', ValidateTransfer::class]
+            'wallet balance' => ['WalletBalance', WalletBalance::class]
         ];
     }
 }
