@@ -27,12 +27,15 @@ use Emmanix2002\Moneywave\Moneywave;
  * @property float  $fee                the service fee to charge on behalf of the merchant (default: 0)
  * @property string $redirecturl        the URL to redirect to after the transaction has been successfully validated
  * @property string $medium             the request medium. One of the PaymentMedium::* constants
+ * @property string $pin                (optional) Card PIN required when charging Verve Cards
  * @property string $chargeCurrency     (optional) the currency in which card will be charged
  * @property string $disburseCurrency   (optional) the currency in which account will be credited
  * @property string $charge_with        (optional) charge method. One of the ChargeMethod::* constants
  * @property string $card_last4         (optional) card last 4 digits, required in "charge with" ChargeMethod::TOKEN
+ * @property string $card_token         (optional) card token, required in charge with tokenized card
  * @property string $sender_account_number  (optional) charge source, required in "charge with" ChargeMethod::ACCOUNT
  * @property string $sender_bank        (optional) charge source bank, required in "charge with" ChargeMethod::ACCOUNT
+ * @property string $passcode           (optional) Account Security PIN, required in "charge with" ChargeMethod::ACCOUNT
  *
  * @link https://moneywave.flutterwave.com/api#2
  */
