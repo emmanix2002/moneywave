@@ -10,6 +10,8 @@ use Emmanix2002\Moneywave\Moneywave;
  *
  * This service is used to authorise a transfer of funds from a card [or bank account] to your Moneywave wallet or
  * another bank account.
+ * Our Live bank accounts require validation to be charged, this could come as a OTP or ACCOUNT_CREDIT.
+ * Response code will be 02 will mean you have to validate the transaction.
  *
  * @package Emmanix2002\Moneywave\Service
  *
@@ -27,11 +29,7 @@ class ValidateTransfer extends AbstractService
     public function __construct(Moneywave $moneyWave)
     {
         parent::__construct($moneyWave);
-        $this->setRequiredFields(
-            'transactionRef',
-            'authType',
-            'authValue'
-        );
+        $this->setRequiredFields('transactionRef', 'authType', 'authValue');
     }
     
     /**
@@ -51,6 +49,6 @@ class ValidateTransfer extends AbstractService
      */
     public function getRequestPath(): string
     {
-        return Endpoints::TRANSFER_VALIDATE;
+        return Endpoints::TRANSFER_VALIDATE_ACCOUNT;
     }
 }

@@ -130,6 +130,7 @@ The table below describes all the services:
 | AccountNumberValidation   | createAccountNumberValidationService  |      
 | Banks                     | createBanksService                    |      
 | CardToBankAccount         | createCardToBankAccountService        |      
+| CardTokenization          | createCardTokenizationService         |      
 | CardToWallet              | createCardToWalletService             |      
 | Disburse                  | createDisburseService                 |      
 | DisburseBulk              | createDisburseBulkService             |      
@@ -137,6 +138,7 @@ The table below describes all the services:
 | QueryDisbursement         | createQueryDisbursementService        |      
 | RetryFailedTransfer       | createRetryFailedTransferService      |      
 | TotalChargeToCard         | createTotalChargeToCardService        |      
+| ValidateCardTransfer      | createValidateCardTransferService     |      
 | ValidateTransfer          | createValidateTransferService         |      
 | VerifyMerchant            | createVerifyMerchantService           |      
 | WalletBalance             | createWalletBalanceService            |      
@@ -181,9 +183,25 @@ they'll be automatically given their required value by the library. Find them li
 Just as there're special fields, there're also some special service objects, that present more than the regular: 
 `send()` method.    
 
-##### createValidateTransferService
-This service will usually be called after a success response from the `CardToBankAccount`, or `CardToWallet` call.    
-You will normally use it to authorise a transfer request.
+#### Transfers (`createCardToBankAccountService()`, `createCardToWalletService()`)
+These transfer services are special because, most times, they're _2-legged_. They involve the following steps:    
+
+1 The transfer leg
+2 The validation leg
+
+These steps work one after the other; and both steps must be completed to _*complete*_ the transfer.     
+There're 2 services that take care of the `validation` leg; they are:
+
+- `createValidateCardTransferService()`: allows you to validate a _*card to wallet*_ or _*card to account*_ transfer 
+made with a _Verve_ debit card
+- `createValidateTransferService()`: allows you to validate a _*card to wallet*_ or _*card to account*_ transfer made 
+with an account. That is, the __charge_with__ field was set to `ChargeMethod::ACCOUNT`.    
+
+So, when you receive a success response from the API after the _first leg_; you start the validate leg.
+
+_*NOTE*_: For Mastercard and Visa card transfers, you'll receive a `authurl` key in the successful API response; you 
+ are to _*redirect*_ to this URL for the payer to validate the transfer. After success or failure, the payer will be
+ redirected back to the URL set in the `redirecturl` field of the transfer request.
 
 ##### createDisburseBulkService()
 This service is for disbursing cash from your `Moneywave` wallet to multiple bank accounts. It has a special method on 
