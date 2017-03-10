@@ -6,26 +6,26 @@ use Emmanix2002\Moneywave\Enum\Endpoints;
 use Emmanix2002\Moneywave\Moneywave;
 
 /**
- * Query the details of a wallet to account disbursement transfer.
- *
- * It’s inevitable that you’d eventually need to see your records of previous transactions whether successful or not.
- * To gain access to this information, you need to send a POST request to /v1/disburse/status.
+ * You can tokenize a card and use the token for initiate a card to account transfer request.
  *
  * @package Emmanix2002\Moneywave\Service
  *
- * @property string $ref    the UNIQUE reference for the disbursement to be queried
+ * @property string $card_no        the card number of the debit card
+ * @property string $cvv            the CVV of the debit card
+ * @property int    $expiry_month   the expiry month of the debit card
+ * @property int    $expiry_year    the expiry year of the debit card
  */
-class QueryDisbursement extends AbstractService
+class CardTokenization extends AbstractService
 {
     /**
-     * QueryDisbursement constructor.
+     * CardTokenization constructor.
      *
      * @param Moneywave $moneyWave
      */
     public function __construct(Moneywave $moneyWave)
     {
         parent::__construct($moneyWave);
-        $this->setRequiredFields('ref');
+        $this->setRequiredFields('card_no', 'cvv', 'expiry_month', 'expiry_year');
     }
     
     /**
@@ -45,6 +45,6 @@ class QueryDisbursement extends AbstractService
      */
     public function getRequestPath(): string
     {
-        return Endpoints::DISBURSE_STATUS;
+        return Endpoints::TOKENIZE_CARD;
     }
 }

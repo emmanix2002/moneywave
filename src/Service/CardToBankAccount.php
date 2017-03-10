@@ -33,10 +33,14 @@ use Emmanix2002\Moneywave\Moneywave;
  * @property string $disburseCurrency   (optional) the currency in which account will be credited
  * @property string $charge_with        (optional) charge method. One of the ChargeMethod::* constants
  * @property string $card_last4         (optional) card last 4 digits, required in "charge with" ChargeMethod::TOKEN
- * @property string $card_token         (optional) card token, required in charge with tokenized card
+ * @property string $card_token         (optional) card token, required in "charge with" ChargeMethod::TOKENIZED_CARD
  * @property string $sender_account_number  (optional) charge source, required in "charge with" ChargeMethod::ACCOUNT
  * @property string $sender_bank        (optional) charge source bank, required in "charge with" ChargeMethod::ACCOUNT
  * @property string $passcode           (optional) Account Security PIN, required in "charge with" ChargeMethod::ACCOUNT
+ * @property string $card_id            (optional) card ID, required in "charging with" ChargeMethod::TOKEN
+ * @property string $cycle              (optional) scheduled / recurring transfer cycle
+ * @property string $startDate          (optional) scheduled / recurring start date
+ * @property string $endDate            (optional) scheduled / recurring end date
  *
  * @link https://moneywave.flutterwave.com/api#2
  */

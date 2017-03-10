@@ -2,7 +2,6 @@
 
 namespace Emmanix2002\Moneywave\Service;
 
-
 use Emmanix2002\Moneywave\Exception\ValidationException;
 use Emmanix2002\Moneywave\MoneywaveResponse;
 use GuzzleHttp\Exception\BadResponseException;

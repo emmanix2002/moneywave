@@ -6,26 +6,27 @@ use Emmanix2002\Moneywave\Enum\Endpoints;
 use Emmanix2002\Moneywave\Moneywave;
 
 /**
- * Query the details of a wallet to account disbursement transfer.
+ * Validate a transfer from a Verve card.
  *
- * It’s inevitable that you’d eventually need to see your records of previous transactions whether successful or not.
- * To gain access to this information, you need to send a POST request to /v1/disburse/status.
+ * Verve Cards will be charged using PIN, the bank determines if they want an extra level of validation; if they do,
+ * response code will be 02, and that means you have to validate the transaction.
  *
  * @package Emmanix2002\Moneywave\Service
  *
- * @property string $ref    the UNIQUE reference for the disbursement to be queried
+ * @property string $transactionRef the flutterChargeReference key value from the success transfer object
+ * @property string $otp            the authorization value. E.g. the OTP token
  */
-class QueryDisbursement extends AbstractService
+class ValidateCardTransfer extends AbstractService
 {
     /**
-     * QueryDisbursement constructor.
+     * ValidateCardTransfer constructor.
      *
      * @param Moneywave $moneyWave
      */
     public function __construct(Moneywave $moneyWave)
     {
         parent::__construct($moneyWave);
-        $this->setRequiredFields('ref');
+        $this->setRequiredFields('transactionRef', 'otp');
     }
     
     /**
@@ -45,6 +46,6 @@ class QueryDisbursement extends AbstractService
      */
     public function getRequestPath(): string
     {
-        return Endpoints::DISBURSE_STATUS;
+        return Endpoints::TRANSFER_VALIDATE_CARD;
     }
 }

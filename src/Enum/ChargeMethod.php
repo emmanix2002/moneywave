@@ -7,4 +7,5 @@ class ChargeMethod
     const ACCOUNT = 'account';
     const CARD = 'card';
     const TOKEN = 'token';
+    const TOKENIZED_CARD = 'tokenized_card';
 }

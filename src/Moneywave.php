@@ -9,6 +9,7 @@ use Emmanix2002\Moneywave\Exception\UnknownServiceException;
 use Emmanix2002\Moneywave\Service\AccountNumberValidation;
 use Emmanix2002\Moneywave\Service\Banks;
 use Emmanix2002\Moneywave\Service\CardToBankAccount;
+use Emmanix2002\Moneywave\Service\CardTokenization;
 use Emmanix2002\Moneywave\Service\CardToWallet;
 use Emmanix2002\Moneywave\Service\Disburse;
 use Emmanix2002\Moneywave\Service\DisburseBulk;
@@ -16,12 +17,11 @@ use Emmanix2002\Moneywave\Service\QueryCardToAccountTransfer;
 use Emmanix2002\Moneywave\Service\QueryDisbursement;
 use Emmanix2002\Moneywave\Service\RetryFailedTransfer;
 use Emmanix2002\Moneywave\Service\TotalChargeToCard;
+use Emmanix2002\Moneywave\Service\ValidateCardTransfer;
 use Emmanix2002\Moneywave\Service\ValidateTransfer;
 use Emmanix2002\Moneywave\Service\VerifyMerchant;
 use Emmanix2002\Moneywave\Service\WalletBalance;
 use GuzzleHttp\Client;
-use GuzzleHttp\Exception\BadResponseException;
-use GuzzleHttp\Exception\ConnectException;
 use GuzzleHttp\RequestOptions;
 use Monolog\Handler\ChromePHPHandler;
 use Monolog\Handler\ErrorLogHandler;
@@ -52,6 +52,7 @@ use Psr\Log\LoggerInterface;
  * @method AccountNumberValidation      createAccountNumberValidationService()
  * @method Banks                        createBanksService()
  * @method CardToBankAccount            createCardToBankAccountService()
+ * @method CardTokenization             createCardTokenizationService()
  * @method CardToWallet                 createCardToWalletService()
  * @method Disburse                     createDisburseService()
  * @method DisburseBulk                 createDisburseBulkService()
@@ -61,6 +62,7 @@ use Psr\Log\LoggerInterface;
  * @method TotalChargeToCard            createTotalChargeToCardService()
  * @method VerifyMerchant               createVerifyMerchantService()
  * @method WalletBalance                createWalletBalanceService()
+ * @method ValidateCardTransfer         createValidateCardTransferService()
  * @method ValidateTransfer             createValidateTransferService()
  *
  * @link https://moneywave.flutterwave.com/api
