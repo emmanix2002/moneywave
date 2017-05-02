@@ -10,7 +10,7 @@ try {
     $accessToken = !empty($_SESSION['accessToken']) ? $_SESSION['accessToken'] : null;
     $mw = new Moneywave($accessToken);
     $_SESSION['accessToken'] = $mw->getAccessToken();
-    var_dump($mw->getAccessToken());
+    dump($mw->getAccessToken());
 } catch (ValidationException $e) {
-    var_dump($e->getMessage());
+    dump($e->getMessage());
 }

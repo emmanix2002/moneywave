@@ -12,8 +12,8 @@ try {
     $transferRetry = $mw->createRetryFailedTransferService();
     $transferRetry->id = 'id of transaction';
     $response = $transferRetry->send();
-    var_dump($response->getData());
-    var_dump($response->getMessage());
+    dump($response->getData());
+    dump($response->getMessage());
 } catch (ValidationException $e) {
-    var_dump($e->getMessage());
+    dump($e->getMessage());
 }

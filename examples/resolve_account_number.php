@@ -14,8 +14,8 @@ try {
     $accountValidation->bank_code = Banks::ACCESS_BANK;
     $accountValidation->account_number = '0690000004';
     $response = $accountValidation->send();
-    var_dump($response->getData());
-    var_dump($response->getMessage());
+    dump($response->getData());
+    dump($response->getMessage());
 } catch (ValidationException $e) {
-    var_dump($e->getMessage());
+    dump($e->getMessage());
 }
