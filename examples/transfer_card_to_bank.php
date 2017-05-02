@@ -27,8 +27,8 @@ try {
     $cardToAccount->redirecturl = 'localhost:8000/transfer_card_to_bank.php';
     $cardToAccount->medium = PaymentMedium::WEB;
     $response = $cardToAccount->send();
-    var_dump($response->getData());
-    var_dump($response->getMessage());
+    dump($response->getData());
+    dump($response->getMessage());
 } catch (ValidationException $e) {
-    var_dump($e->getMessage());
+    dump($e->getMessage());
 }

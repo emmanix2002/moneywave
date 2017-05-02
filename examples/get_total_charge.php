@@ -14,8 +14,8 @@ try {
     $chargeToCard->amount = 4500000;
     # the fee is set for you by default - 0
     $response = $chargeToCard->send();
-    var_dump($response->getData());
-    var_dump($response->getMessage());
+    dump($response->getData());
+    dump($response->getMessage());
 } catch (ValidationException $e) {
-    var_dump($e->getMessage());
+    dump($e->getMessage());
 }

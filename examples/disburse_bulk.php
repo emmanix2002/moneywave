@@ -17,13 +17,13 @@ try {
     $bulkDisbursement->addRecipient(Banks::ACCESS_BANK, '0690000004', 1)
                      ->addRecipient(Banks::ACCESS_BANK, '0690000005', 2);
     $response = $bulkDisbursement->send();
-    var_dump($response->getRawResponse());
-    var_dump([
+    dump($response->getRawResponse());
+    dump([
        'Failed transactions' => $response->failed,
         'Successful transactions' => $response->passed
     ]);
-    var_dump($response->getData());
-    var_dump($response->getMessage());
+    dump($response->getData());
+    dump($response->getMessage());
 } catch (ValidationException $e) {
-    var_dump($e->getMessage());
+    dump($e->getMessage());
 }
