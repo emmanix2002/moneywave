@@ -118,7 +118,7 @@ class Moneywave
         $this->apiKey = $apiKey ?: getenv('MONEYWAVE_API_KEY');
         $this->secretKey = $secretKey ?: getenv('MONEYWAVE_SECRET_KEY');
         $this->setEnvironment($env);
-        if (empty($this->accessToken)) {
+        if ($this->accessToken === null) {
             $this->verifyMerchant();
         }
     }
