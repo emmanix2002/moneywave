@@ -35,6 +35,7 @@ class DisburseBulkTest extends TestCase
     public function testPassValidation()
     {
         $this->serviceObject->lock = 'wallet password';
+        $this->serviceObject->name = 'move';
         $this->serviceObject->ref = 'reference#10';
         $this->serviceObject->senderName = 'Moneywave Sender';
         $this->serviceObject->recipients = [

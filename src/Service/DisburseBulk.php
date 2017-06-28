@@ -12,7 +12,7 @@ use Emmanix2002\Moneywave\MoneywaveResponse;
  * Disburse funds from your Moneywave wallet to a multiple recipient bank accounts.
  *
  * To successfully transfer money from a funded wallet to more than one account at a time, you need to call
- * v1/disburse/bulk and supply all the necessary parameters.
+ * v1/disburse/queue and supply all the necessary parameters.
  * The ref for the individual disburse transactions must be UNIQUE, and the ref for the whole disburse transaction must
  * be UNIQUE for each disburse transaction.
  *
@@ -22,7 +22,9 @@ use Emmanix2002\Moneywave\MoneywaveResponse;
  * @property array  $recipients     the password of your wallet (Use DisburseBulk::addRecipient() to add recipients)
  * @property string $currency       the currency to send money in. One of the Currency::* constants (default: Naira)
  * @property string $senderName     the name of the sender
+ * @property string $name           the UNIQUE batch name for this disbursement
  * @property string $ref            a UNIQUE reference code for this transaction
+ * @property bool   $instantQueue   should always be set to true
  */
 class DisburseBulk extends AbstractService
 {
@@ -37,8 +39,9 @@ class DisburseBulk extends AbstractService
     public function __construct(Moneywave $moneyWave)
     {
         parent::__construct($moneyWave);
-        $this->currency = Currency::NAIRA;
-        $this->setRequiredFields('lock', 'recipients', 'currency', 'senderName', 'ref');
+        $this->requestData['currency'] = Currency::NAIRA;
+        $this->requestData['instantQueue'] = true;
+        $this->setRequiredFields('lock', 'recipients', 'currency', 'senderName', 'ref', 'instantQueue', 'name');
     }
     
     /**
@@ -67,23 +70,12 @@ class DisburseBulk extends AbstractService
      * @param string      $bankCode         the recipient bank code. One of the Banks::* constants
      * @param string      $accountNumber    the recipient account number
      * @param float       $amount           the amount to be transferred
-     * @param string|null $reference        the unique reference (default: recipient index)
      *
      * @return DisburseBulk
      */
-    public function addRecipient(
-        string $bankCode,
-        string $accountNumber,
-        float $amount,
-        string $reference = null
-    ): DisburseBulk {
-        $reference = $reference ?: (string) (count($this->disburseRecipients) + 1);
-        $this->disburseRecipients[] = [
-            'bankcode' => $bankCode,
-            'accountNumber' => $accountNumber,
-            'amount' => $amount,
-            'ref' => $reference
-        ];
+    public function addRecipient(string $bankCode, string $accountNumber, float $amount): DisburseBulk
+    {
+        $this->disburseRecipients[] = ['bankcode' => $bankCode, 'accountNumber' => $accountNumber, 'amount' => $amount];
         return $this;
     }
     

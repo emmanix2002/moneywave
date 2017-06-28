@@ -18,6 +18,7 @@ use Emmanix2002\Moneywave\Moneywave;
  * @property string $currency       the currency to send money in. One of the Currency::* constants (default: Naira)
  * @property string $senderName     the name of the sender
  * @property string $ref            a UNIQUE reference code for this transaction
+ * @property string $narration      some more details about the transaction
  */
 class Disburse extends AbstractService
 {
@@ -29,7 +30,7 @@ class Disburse extends AbstractService
     public function __construct(Moneywave $moneyWave)
     {
         parent::__construct($moneyWave);
-        $this->currency = Currency::NAIRA;
+        $this->requestData['currency'] = Currency::NAIRA;
         $this->setRequiredFields('lock', 'amount', 'bankcode', 'accountNumber', 'currency', 'senderName');
     }
     

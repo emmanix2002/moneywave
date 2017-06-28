@@ -6,18 +6,18 @@ use Emmanix2002\Moneywave\Enum\AuthorizationType;
 use Emmanix2002\Moneywave\Enum\Environment;
 use Emmanix2002\Moneywave\Exception\ValidationException;
 use Emmanix2002\Moneywave\Moneywave;
-use Emmanix2002\Moneywave\Service\ValidateTransfer;
+use Emmanix2002\Moneywave\Service\ValidateAccountTransfer;
 use PHPUnit\Framework\TestCase;
 
-class ValidateTransferTest extends TestCase
+class ValidateAccountTransferTest extends TestCase
 {
-    /** @var  ValidateTransfer */
+    /** @var  ValidateAccountTransfer */
     private $serviceObject;
     
     public function setUp()
     {
         $moneywave = new Moneywave(ACCESS_TOKEN, API_KEY, SECRET_KEY, Environment::STAGING);
-        $this->serviceObject = $moneywave->createValidateTransferService();
+        $this->serviceObject = $moneywave->createValidateAccountTransferService();
     }
     
     public function testRequestMethod()

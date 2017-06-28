@@ -6,7 +6,7 @@ use Emmanix2002\Moneywave\Enum\Endpoints;
 use Emmanix2002\Moneywave\Moneywave;
 
 /**
- * Validates a CardToWallet [or CardToAccount] transfer passing in the authentication parameters.
+ * Validates a CardTransfer [or CardToAccount] transfer passing in the authentication parameters.
  *
  * This service is used to authorise a transfer of funds from a card [or bank account] to your Moneywave wallet or
  * another bank account.
@@ -19,10 +19,10 @@ use Emmanix2002\Moneywave\Moneywave;
  * @property string $authType       the authorization type. One of the AuthorizationType::* constants
  * @property string $authValue      the authorization value. E.g. the OTP token
  */
-class ValidateTransfer extends AbstractService
+class ValidateAccountTransfer extends AbstractService
 {
     /**
-     * ValidateTransfer constructor.
+     * ValidateAccountTransfer constructor.
      *
      * @param Moneywave $moneyWave
      */
