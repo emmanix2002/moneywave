@@ -70,12 +70,22 @@ class DisburseBulk extends AbstractService
      * @param string      $bankCode         the recipient bank code. One of the Banks::* constants
      * @param string      $accountNumber    the recipient account number
      * @param float       $amount           the amount to be transferred
+     * @param string      $reference        (optional) the custom transaction reference
      *
      * @return DisburseBulk
      */
-    public function addRecipient(string $bankCode, string $accountNumber, float $amount): DisburseBulk
+    public function addRecipient(string $bankCode, string $accountNumber, float $amount, string $reference = null): DisburseBulk
     {
-        $this->disburseRecipients[] = ['bankcode' => $bankCode, 'accountNumber' => $accountNumber, 'amount' => $amount];
+        if (empty($reference)) {
+            $this->disburseRecipients[] = ['bankcode' => $bankCode, 'accountNumber' => $accountNumber, 'amount' => $amount];
+        } else {
+            $this->disburseRecipients[] = [
+                'bankcode' => $bankCode,
+                'accountNumber' => $accountNumber,
+                'amount' => $amount,
+                'ref' => $reference
+            ];
+        }
         return $this;
     }
     
