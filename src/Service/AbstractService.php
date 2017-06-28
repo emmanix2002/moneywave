@@ -15,7 +15,7 @@ abstract class AbstractService implements ServiceInterface
     protected $moneyWave;
     
     /** @var  array */
-    private $requestData = [];
+    protected $requestData = [];
     
     /** @var array  */
     private $requiredFields = [];

@@ -6,16 +6,16 @@ use Emmanix2002\Moneywave\Enum\TransferRecipient;
 use Emmanix2002\Moneywave\Moneywave;
 
 /**
- * Transfer funds from a card to a your Moneywave wallet.
+ * Transfer funds from a bank account to a Moneywave wallet.
  *
- * The chief premise of this solution is that you can charge any card in the world and pay into your wallet..
+ * The chief premise of this solution is that you can charge any bank account and deposit the funds to your wallet.
  *
  * @package Emmanix2002\Moneywave\Service
  */
-class CardToWallet extends CardTransfer
+class AccountToWallet extends AccountTransfer
 {
     /**
-     * CardToWallet constructor.
+     * AccountToWallet constructor.
      *
      * @param Moneywave $moneyWave
      */

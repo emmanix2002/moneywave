@@ -6,12 +6,12 @@ use Emmanix2002\Moneywave\Enum\Environment;
 use Emmanix2002\Moneywave\Enum\PaymentMedium;
 use Emmanix2002\Moneywave\Exception\ValidationException;
 use Emmanix2002\Moneywave\Moneywave;
-use Emmanix2002\Moneywave\Service\CardToWallet;
+use Emmanix2002\Moneywave\Service\CardTransfer;
 use PHPUnit\Framework\TestCase;
 
 class CardToWalletTest extends TestCase
 {
-    /** @var  CardToWallet */
+    /** @var  CardTransfer */
     private $serviceObject;
     
     public function setUp()
@@ -43,7 +43,7 @@ class CardToWalletTest extends TestCase
         $this->serviceObject->expiry_year = '2017';
         $this->serviceObject->expiry_month = '01';
         $this->serviceObject->amount = 10;
-        $this->serviceObject->redirecturl = 'localhost:8000';
+        $this->serviceObject->redirect_url = 'localhost:8000';
         $this->serviceObject->medium = PaymentMedium::MOBILE;
         $this->assertTrue($this->serviceObject->validatePayload());
     }

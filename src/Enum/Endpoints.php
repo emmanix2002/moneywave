@@ -6,7 +6,7 @@ class Endpoints
 {
     const BANKS = 'banks';
     const DISBURSE = 'v1/disburse';
-    const DISBURSE_BULK = 'v1/disburse/bulk';
+    const DISBURSE_BULK = 'v1/disburse/queue';
     const DISBURSE_STATUS = 'v1/disburse/status';
     const GET_CHARGE = 'v1/get-charge';
     const MERCHANT_VERIFY = 'v1/merchant/verify';

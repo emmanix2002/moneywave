@@ -2,24 +2,21 @@
 
 namespace Emmanix2002\Moneywave\Service;
 
-use Emmanix2002\Moneywave\Enum\Endpoints;
 use Emmanix2002\Moneywave\Enum\TransferRecipient;
 use Emmanix2002\Moneywave\Moneywave;
 
 /**
- * Transfer funds from a card to a bank account.
+ * Transfer funds from a bank account to another account.
  *
- * The chief premise of this solution is that you can charge any card in the world and pay any bank account in
- * supported countries.
+ * The chief premise of this solution is that you can charge any bank account and deposit the funds to another bank
+ * account in one of the supported countries.
  *
  * @package Emmanix2002\Moneywave\Service
- *
- * @link https://moneywave.flutterwave.com/api#2
  */
-class CardToBankAccount extends CardTransfer
+class AccountToAccount extends AccountTransfer
 {
     /**
-     * CardToBankAccount constructor.
+     * AccountToAccount constructor.
      *
      * @param Moneywave $moneyWave
      */

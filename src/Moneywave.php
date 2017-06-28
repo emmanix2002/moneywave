@@ -7,10 +7,14 @@ use Dotenv\Exception\InvalidPathException;
 use Emmanix2002\Moneywave\Enum\Environment;
 use Emmanix2002\Moneywave\Exception\UnknownServiceException;
 use Emmanix2002\Moneywave\Service\AccountNumberValidation;
+use Emmanix2002\Moneywave\Service\AccountToAccount;
+use Emmanix2002\Moneywave\Service\AccountToWallet;
+use Emmanix2002\Moneywave\Service\AccountTransfer;
 use Emmanix2002\Moneywave\Service\Banks;
 use Emmanix2002\Moneywave\Service\CardToBankAccount;
 use Emmanix2002\Moneywave\Service\CardTokenization;
 use Emmanix2002\Moneywave\Service\CardToWallet;
+use Emmanix2002\Moneywave\Service\CardTransfer;
 use Emmanix2002\Moneywave\Service\Disburse;
 use Emmanix2002\Moneywave\Service\DisburseBulk;
 use Emmanix2002\Moneywave\Service\QueryCardToAccountTransfer;
@@ -18,7 +22,7 @@ use Emmanix2002\Moneywave\Service\QueryDisbursement;
 use Emmanix2002\Moneywave\Service\RetryFailedTransfer;
 use Emmanix2002\Moneywave\Service\TotalChargeToCard;
 use Emmanix2002\Moneywave\Service\ValidateCardTransfer;
-use Emmanix2002\Moneywave\Service\ValidateTransfer;
+use Emmanix2002\Moneywave\Service\ValidateAccountTransfer;
 use Emmanix2002\Moneywave\Service\VerifyMerchant;
 use Emmanix2002\Moneywave\Service\WalletBalance;
 use GuzzleHttp\Client;
@@ -50,9 +54,13 @@ use Psr\Log\LoggerInterface;
  * @package Emmanix2002\Moneywave
  *
  * @method AccountNumberValidation      createAccountNumberValidationService()
+ * @method AccountToAccount             createAccountToAccountService()
+ * @method AccountToWallet              createAccountToWalletService()
+ * @method AccountTransfer              createAccountTransferService()
  * @method Banks                        createBanksService()
  * @method CardToBankAccount            createCardToBankAccountService()
  * @method CardTokenization             createCardTokenizationService()
+ * @method CardTransfer                 createCardTransferService()
  * @method CardToWallet                 createCardToWalletService()
  * @method Disburse                     createDisburseService()
  * @method DisburseBulk                 createDisburseBulkService()
@@ -63,7 +71,7 @@ use Psr\Log\LoggerInterface;
  * @method VerifyMerchant               createVerifyMerchantService()
  * @method WalletBalance                createWalletBalanceService()
  * @method ValidateCardTransfer         createValidateCardTransferService()
- * @method ValidateTransfer             createValidateTransferService()
+ * @method ValidateAccountTransfer      createValidateAccountTransferService()
  *
  * @link https://moneywave.flutterwave.com/api
  */

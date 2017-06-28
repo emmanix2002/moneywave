@@ -46,7 +46,7 @@ class CardToBankAccountTest extends TestCase
         $this->serviceObject->expiry_year = '2017';
         $this->serviceObject->expiry_month = '01';
         $this->serviceObject->amount = 10;
-        $this->serviceObject->redirecturl = 'localhost:8000';
+        $this->serviceObject->redirect_url = 'localhost:8000';
         $this->serviceObject->medium = PaymentMedium::MOBILE;
         $this->assertTrue($this->serviceObject->validatePayload());
     }
