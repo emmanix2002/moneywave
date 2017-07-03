@@ -25,6 +25,7 @@ use Emmanix2002\Moneywave\MoneywaveResponse;
  * @property string $name           the UNIQUE batch name for this disbursement
  * @property string $ref            a UNIQUE reference code for this transaction
  * @property bool   $instantQueue   should always be set to true
+ * @property string $disburse_callback_code   (optional) code that you use to verify POSTed responses
  */
 class DisburseBulk extends AbstractService
 {
@@ -70,7 +71,7 @@ class DisburseBulk extends AbstractService
      * @param string      $bankCode         the recipient bank code. One of the Banks::* constants
      * @param string      $accountNumber    the recipient account number
      * @param float       $amount           the amount to be transferred
-     * @param string      $reference        (optional) the custom transaction reference
+     * @param string      $reference        (optional) the custom unique transaction reference
      *
      * @return DisburseBulk
      */
@@ -102,7 +103,7 @@ class DisburseBulk extends AbstractService
         if (empty($this->disburseRecipients)) {
             throw new ValidationException('You need to provide at least 1 recipient');
         }
-        $this->recipients = $this->disburseRecipients;
+        $this->requestData['recipients'] = $this->disburseRecipients;
         return parent::send();
     }
 }

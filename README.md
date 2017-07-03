@@ -128,10 +128,14 @@ The table below describes all the services:
 | Class Name                | Service Call                          |      
 |---------------------------|---------------------------------------|      
 | AccountNumberValidation   | createAccountNumberValidationService  |      
+| AccountToAccount          | createAccountToAccountService         |      
+| AccountToWallet           | createAccountToWalletService          |      
+| AccountTransfer           | createAccountTransferService          |      
 | Banks                     | createBanksService                    |      
 | CardToBankAccount         | createCardToBankAccountService        |      
 | CardTokenization          | createCardTokenizationService         |      
 | CardToWallet              | createCardToWalletService             |      
+| CardTransfer              | createCardTransferService             |      
 | Disburse                  | createDisburseService                 |      
 | DisburseBulk              | createDisburseBulkService             |      
 | QueryCardToAccountTransfer| createQueryCardToAccountTransfer      |      
