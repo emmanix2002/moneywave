@@ -138,6 +138,7 @@ The table below describes all the services:
 | CardTransfer              | createCardTransferService             |      
 | Disburse                  | createDisburseService                 |      
 | DisburseBulk              | createDisburseBulkService             |      
+| InternetBankingToWallet   | createInternetBankingToWalletService  |      
 | QueryCardToAccountTransfer| createQueryCardToAccountTransfer      |      
 | QueryDisbursement         | createQueryDisbursementService        |      
 | RetryFailedTransfer       | createRetryFailedTransferService      |      
