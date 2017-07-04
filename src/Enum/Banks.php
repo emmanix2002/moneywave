@@ -71,7 +71,7 @@ class Banks
      *
      * @return array
      */
-    public function getBanks(): array
+    public static function getBanks(): array
     {
         return self::BANK_CODES;
     }
