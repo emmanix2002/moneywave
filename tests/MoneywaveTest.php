@@ -15,6 +15,7 @@ use Emmanix2002\Moneywave\Service\CardToWallet;
 use Emmanix2002\Moneywave\Service\CardTransfer;
 use Emmanix2002\Moneywave\Service\Disburse;
 use Emmanix2002\Moneywave\Service\DisburseBulk;
+use Emmanix2002\Moneywave\Service\InternetBankingToWallet;
 use Emmanix2002\Moneywave\Service\QueryCardToAccountTransfer;
 use Emmanix2002\Moneywave\Service\QueryDisbursement;
 use Emmanix2002\Moneywave\Service\RetryFailedTransfer;
@@ -83,6 +84,7 @@ class MoneywaveTest extends TestCase
             'card tokenization' => ['CardTokenization', CardTokenization::class],
             'disburse' => ['Disburse', Disburse::class],
             'disburse bulk' => ['DisburseBulk', DisburseBulk::class],
+            'internet banking' => ['InternetBankingToWallet', InternetBankingToWallet::class],
             'query card transfer' => ['QueryCardToAccountTransfer', QueryCardToAccountTransfer::class],
             'query disbursement' => ['QueryDisbursement', QueryDisbursement::class],
             'retry failed transfer' => ['RetryFailedTransfer', RetryFailedTransfer::class],

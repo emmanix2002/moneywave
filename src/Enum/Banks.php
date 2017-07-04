@@ -71,8 +71,35 @@ class Banks
      *
      * @return array
      */
-    public static function getSupportedBanks(): array
+    public function getBanks(): array
     {
         return self::BANK_CODES;
+    }
+    
+    /**
+     * Returns an associative array containing of bank codes in the form: [code => bank_name]
+     *
+     * @return array
+     */
+    public static function getSupportedBanks(): array
+    {
+        return array_merge(
+            [self::ACCESS_BANK => self::BANK_CODES[self::ACCESS_BANK]],
+            self::getSupportedBanksForInternetBanking()
+        );
+    }
+    
+    /**
+     * Returns the list of support banks for internet banking billing
+     *
+     * @return array
+     */
+    public static function getSupportedBanksForInternetBanking(): array
+    {
+        $codes = [self::GTBANK, self::UBA, self::DIAMOND_BANK, self::ZENITH_BANK, self::FIRST_BANK];
+        # the supported banks for internet banking
+        return array_filter(self::BANK_CODES, function ($key) use ($codes) {
+            return in_array($key, $codes);
+        }, ARRAY_FILTER_USE_KEY);
     }
 }

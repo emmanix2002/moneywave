@@ -17,6 +17,7 @@ use Emmanix2002\Moneywave\Service\CardToWallet;
 use Emmanix2002\Moneywave\Service\CardTransfer;
 use Emmanix2002\Moneywave\Service\Disburse;
 use Emmanix2002\Moneywave\Service\DisburseBulk;
+use Emmanix2002\Moneywave\Service\InternetBankingToWallet;
 use Emmanix2002\Moneywave\Service\QueryCardToAccountTransfer;
 use Emmanix2002\Moneywave\Service\QueryDisbursement;
 use Emmanix2002\Moneywave\Service\RetryFailedTransfer;
@@ -64,6 +65,7 @@ use Psr\Log\LoggerInterface;
  * @method CardToWallet                 createCardToWalletService()
  * @method Disburse                     createDisburseService()
  * @method DisburseBulk                 createDisburseBulkService()
+ * @method InternetBankingToWallet      createInternetBankingToWalletService()
  * @method QueryCardToAccountTransfer   createQueryCardToAccountTransferService()
  * @method QueryDisbursement            createQueryDisbursementService()
  * @method RetryFailedTransfer          createRetryFailedTransferService()
