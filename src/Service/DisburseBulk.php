@@ -25,6 +25,7 @@ use Emmanix2002\Moneywave\MoneywaveResponse;
  * @property string $name           the UNIQUE batch name for this disbursement
  * @property string $ref            a UNIQUE reference code for this transaction
  * @property bool   $instantQueue   should always be set to true
+ * @property string $narration      (optional) description of the transaction
  * @property string $disburse_callback_code   (optional) code that you use to verify POSTed responses
  */
 class DisburseBulk extends AbstractService
@@ -72,21 +73,27 @@ class DisburseBulk extends AbstractService
      * @param string      $accountNumber    the recipient account number
      * @param float       $amount           the amount to be transferred
      * @param string      $reference        (optional) the custom unique transaction reference
+     * @param string      $narration        (optional) a description of the transaction
      *
      * @return DisburseBulk
      */
-    public function addRecipient(string $bankCode, string $accountNumber, float $amount, string $reference = null): DisburseBulk
-    {
-        if (empty($reference)) {
-            $this->disburseRecipients[] = ['bankcode' => $bankCode, 'accountNumber' => $accountNumber, 'amount' => $amount];
-        } else {
-            $this->disburseRecipients[] = [
-                'bankcode' => $bankCode,
-                'accountNumber' => $accountNumber,
-                'amount' => $amount,
-                'ref' => $reference
-            ];
+    public function addRecipient(
+        string $bankCode,
+        string $accountNumber,
+        float $amount,
+        string $reference = null,
+        string $narration = null
+    ): DisburseBulk {
+        $recipient = ['bankcode' => $bankCode, 'accountNumber' => $accountNumber, 'amount' => $amount];
+        # the new recipient
+        if (!empty($reference)) {
+            $recipient['ref'] = $reference;
         }
+        if (!empty($narration)) {
+            $recipient['narration'] = $narration;
+        }
+        $this->disburseRecipients[] = $recipient;
+        # add the recipient
         return $this;
     }
     

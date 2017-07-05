@@ -265,7 +265,6 @@ class Moneywave
     private function setupLogger(): LoggerInterface
     {
         $logger = new Logger(__CLASS__);
-        $logger->pushHandler(new ChromePHPHandler());
         $logger->pushHandler(new ErrorLogHandler(ErrorLogHandler::OPERATING_SYSTEM, Logger::WARNING));
         return $logger;
     }
