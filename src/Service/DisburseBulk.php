@@ -16,7 +16,6 @@ use Emmanix2002\Moneywave\MoneywaveResponse;
  * The ref for the individual disburse transactions must be UNIQUE, and the ref for the whole disburse transaction must
  * be UNIQUE for each disburse transaction.
  *
- * @package Emmanix2002\Moneywave\Service
  *
  * @property string $lock           the password of your wallet
  * @property array  $recipients     the password of your wallet (Use DisburseBulk::addRecipient() to add recipients)
@@ -30,9 +29,9 @@ use Emmanix2002\Moneywave\MoneywaveResponse;
  */
 class DisburseBulk extends AbstractService
 {
-    /** @var array  */
+    /** @var array */
     private $disburseRecipients = [];
-    
+
     /**
      * DisburseBulk constructor.
      *
@@ -45,9 +44,9 @@ class DisburseBulk extends AbstractService
         $this->requestData['instantQueue'] = true;
         $this->setRequiredFields('lock', 'recipients', 'currency', 'senderName', 'ref', 'instantQueue', 'name');
     }
-    
+
     /**
-     * Returns the HTTP request method for the service
+     * Returns the HTTP request method for the service.
      *
      * @return string
      */
@@ -55,9 +54,9 @@ class DisburseBulk extends AbstractService
     {
         return 'POST';
     }
-    
+
     /**
-     * Returns the API request path for the service
+     * Returns the API request path for the service.
      *
      * @return string
      */
@@ -65,15 +64,15 @@ class DisburseBulk extends AbstractService
     {
         return Endpoints::DISBURSE_BULK;
     }
-    
+
     /**
-     * Adds a recipient to the list of recipients for this transaction
+     * Adds a recipient to the list of recipients for this transaction.
      *
-     * @param string      $bankCode         the recipient bank code. One of the Banks::* constants
-     * @param string      $accountNumber    the recipient account number
-     * @param float       $amount           the amount to be transferred
-     * @param string      $reference        (optional) the custom unique transaction reference
-     * @param string      $narration        (optional) a description of the transaction
+     * @param string $bankCode      the recipient bank code. One of the Banks::* constants
+     * @param string $accountNumber the recipient account number
+     * @param float  $amount        the amount to be transferred
+     * @param string $reference     (optional) the custom unique transaction reference
+     * @param string $narration     (optional) a description of the transaction
      *
      * @return DisburseBulk
      */
@@ -85,7 +84,7 @@ class DisburseBulk extends AbstractService
         string $narration = null
     ): DisburseBulk {
         $recipient = ['bankcode' => $bankCode, 'accountNumber' => $accountNumber, 'amount' => $amount];
-        # the new recipient
+        // the new recipient
         if (!empty($reference)) {
             $recipient['ref'] = $reference;
         }
@@ -93,17 +92,17 @@ class DisburseBulk extends AbstractService
             $recipient['narration'] = $narration;
         }
         $this->disburseRecipients[] = $recipient;
-        # add the recipient
+        // add the recipient
         return $this;
     }
-    
+
     /**
      * Sends the request to the endpoint.
      * There is the possibility of an unsuccessful request status, that should be watched out for.
      *
-     * @return MoneywaveResponse
-     *
      * @throws ValidationException
+     *
+     * @return MoneywaveResponse
      */
     public function send(): MoneywaveResponse
     {
@@ -111,6 +110,7 @@ class DisburseBulk extends AbstractService
             throw new ValidationException('You need to provide at least 1 recipient');
         }
         $this->requestData['recipients'] = $this->disburseRecipients;
+
         return parent::send();
     }
 }

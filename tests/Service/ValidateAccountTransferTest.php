@@ -11,26 +11,26 @@ use PHPUnit\Framework\TestCase;
 
 class ValidateAccountTransferTest extends TestCase
 {
-    /** @var  ValidateAccountTransfer */
+    /** @var ValidateAccountTransfer */
     private $serviceObject;
-    
+
     public function setUp()
     {
         $moneywave = new Moneywave(ACCESS_TOKEN, API_KEY, SECRET_KEY, Environment::STAGING);
         $this->serviceObject = $moneywave->createValidateAccountTransferService();
     }
-    
+
     public function testRequestMethod()
     {
         $this->assertEquals('post', strtolower($this->serviceObject->getRequestMethod()));
     }
-    
+
     public function testFailsValidation()
     {
         $this->expectException(ValidationException::class);
         $this->serviceObject->validatePayload();
     }
-    
+
     public function testPassValidation()
     {
         $this->serviceObject->authType = AuthorizationType::OTP;

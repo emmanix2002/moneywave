@@ -33,41 +33,41 @@ class Banks
     const WEMA_BANK = '035';
     const ZENITH_BANK = '057';
     const ZENITH_MOBILE = '322';
-    
+
     const BANK_CODES = [
-        self::ACCESS_BANK => 'Access Bank Nigeria',
-        self::ACCESS_MOBILE => 'Access Mobile',
-        self::AFRIBANK => 'Afribank Nigeria Plc',
-        self::ASO_SAVINGS_AND_LOANS => 'Aso Savings And Loans',
-        self::DIAMOND_BANK => 'Diamond Bank Plc',
-        self::ECOBANK => 'Ecobank Nigeria Plc',
-        self::ENTERPRISE_BANK => 'Enterprise Bank Limited',
-        self::ECOBANK_MOBILE => 'Ecobank Mobile',
-        self::FIRST_BANK_MOBILE => 'Fbn Mobile',
-        self::FIDELITY_BANK => 'Fidelity Bank Plc',
-        self::FIRST_BANK => 'First Bank Plc',
-        self::FCMB => 'First City Monument Bank Plc',
-        self::GTBANK => 'Gtbank Plc',
-        self::GTBANK_MOBILE_MONEY => 'Gtbank Mobile Money',
-        self::HERITAGE_BANK => 'Heritage Bank',
-        self::KEYSTONE_BANK => 'Keystone Bank Plc',
-        self::PAYCOM => 'Paycom',
-        self::PARKWAY => 'Parkway',
-        self::SKYE_BANK => 'Skye Bank Plc',
-        self::STANBIC_IBTC => 'Stanbic Ibtc Bank Plc',
+        self::ACCESS_BANK             => 'Access Bank Nigeria',
+        self::ACCESS_MOBILE           => 'Access Mobile',
+        self::AFRIBANK                => 'Afribank Nigeria Plc',
+        self::ASO_SAVINGS_AND_LOANS   => 'Aso Savings And Loans',
+        self::DIAMOND_BANK            => 'Diamond Bank Plc',
+        self::ECOBANK                 => 'Ecobank Nigeria Plc',
+        self::ENTERPRISE_BANK         => 'Enterprise Bank Limited',
+        self::ECOBANK_MOBILE          => 'Ecobank Mobile',
+        self::FIRST_BANK_MOBILE       => 'Fbn Mobile',
+        self::FIDELITY_BANK           => 'Fidelity Bank Plc',
+        self::FIRST_BANK              => 'First Bank Plc',
+        self::FCMB                    => 'First City Monument Bank Plc',
+        self::GTBANK                  => 'Gtbank Plc',
+        self::GTBANK_MOBILE_MONEY     => 'Gtbank Mobile Money',
+        self::HERITAGE_BANK           => 'Heritage Bank',
+        self::KEYSTONE_BANK           => 'Keystone Bank Plc',
+        self::PAYCOM                  => 'Paycom',
+        self::PARKWAY                 => 'Parkway',
+        self::SKYE_BANK               => 'Skye Bank Plc',
+        self::STANBIC_IBTC            => 'Stanbic Ibtc Bank Plc',
         self::STANDARD_CHARTERED_BANK => 'Standard Chartered Bank Nigeria Limited',
-        self::STERLING_BANK => 'Sterling Bank Plc',
-        self::STANBIC_MOBILE => 'Stanbic Mobile',
-        self::UNION_BANK => 'Union Bank Of Nigeria Plc',
-        self::UBA => 'United Bank For Africa Plc',
-        self::UNITY_BANK => 'Unity Bank Plc',
-        self::WEMA_BANK => 'Wema Bank Plc',
-        self::ZENITH_BANK => 'Zenith Bank Plc',
-        self::ZENITH_MOBILE => 'Zenith Mobile'
+        self::STERLING_BANK           => 'Sterling Bank Plc',
+        self::STANBIC_MOBILE          => 'Stanbic Mobile',
+        self::UNION_BANK              => 'Union Bank Of Nigeria Plc',
+        self::UBA                     => 'United Bank For Africa Plc',
+        self::UNITY_BANK              => 'Unity Bank Plc',
+        self::WEMA_BANK               => 'Wema Bank Plc',
+        self::ZENITH_BANK             => 'Zenith Bank Plc',
+        self::ZENITH_MOBILE           => 'Zenith Mobile',
     ];
-    
+
     /**
-     * Returns an associative array containing of bank codes in the form: [code => bank_name]
+     * Returns an associative array containing of bank codes in the form: [code => bank_name].
      *
      * @return array
      */
@@ -75,9 +75,9 @@ class Banks
     {
         return self::BANK_CODES;
     }
-    
+
     /**
-     * Returns an associative array containing of bank codes in the form: [code => bank_name]
+     * Returns an associative array containing of bank codes in the form: [code => bank_name].
      *
      * @return array
      */
@@ -88,16 +88,16 @@ class Banks
             self::getSupportedBanksForInternetBanking()
         );
     }
-    
+
     /**
-     * Returns the list of support banks for internet banking billing
+     * Returns the list of support banks for internet banking billing.
      *
      * @return array
      */
     public static function getSupportedBanksForInternetBanking(): array
     {
         $codes = [self::GTBANK, self::UBA, self::DIAMOND_BANK, self::ZENITH_BANK, self::FIRST_BANK];
-        # the supported banks for internet banking
+        // the supported banks for internet banking
         return array_filter(self::BANK_CODES, function ($key) use ($codes) {
             return in_array($key, $codes);
         }, ARRAY_FILTER_USE_KEY);

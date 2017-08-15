@@ -10,8 +10,6 @@ use Emmanix2002\Moneywave\Moneywave;
  *
  * The chief premise of this solution is that you can charge any bank account and deposit the funds to another bank
  * account in one of the supported countries.
- *
- * @package Emmanix2002\Moneywave\Service
  */
 class AccountToAccount extends AccountTransfer
 {
@@ -26,7 +24,7 @@ class AccountToAccount extends AccountTransfer
         $this->requestData['recipient'] = TransferRecipient::ACCOUNT;
         $required = array_merge($this->getRequiredFields(), [
             'recipient_bank',
-            'recipient_account_number'
+            'recipient_account_number',
         ]);
         $this->setRequiredFields(...$required);
     }

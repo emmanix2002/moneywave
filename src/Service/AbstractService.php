@@ -11,15 +11,15 @@ use GuzzleHttp\RequestOptions;
 
 abstract class AbstractService implements ServiceInterface
 {
-    /** @var Moneywave  */
+    /** @var Moneywave */
     protected $moneyWave;
-    
-    /** @var  array */
+
+    /** @var array */
     protected $requestData = [];
-    
-    /** @var array  */
+
+    /** @var array */
     private $requiredFields = [];
-    
+
     /**
      * AbstractService constructor.
      *
@@ -29,12 +29,12 @@ abstract class AbstractService implements ServiceInterface
     {
         $this->moneyWave = $moneyWave;
     }
-    
+
     /**
-     * Sets a request field to the specified value
+     * Sets a request field to the specified value.
      *
-     * @param string $name
-     * @param string|int|float|array  $value
+     * @param string                 $name
+     * @param string|int|float|array $value
      */
     public function __set($name, $value)
     {
@@ -42,9 +42,9 @@ abstract class AbstractService implements ServiceInterface
             $this->requestData[(string) $name] = $value;
         }
     }
-    
+
     /**
-     * Sets a list of fields as required for this service
+     * Sets a list of fields as required for this service.
      *
      * @param \string[] ...$fieldNames
      *
@@ -53,9 +53,10 @@ abstract class AbstractService implements ServiceInterface
     protected function setRequiredFields(string ...$fieldNames): ServiceInterface
     {
         $this->requiredFields = $fieldNames;
+
         return $this;
     }
-    
+
     /**
      * Returns the request payload to be sent in the request.
      *
@@ -65,9 +66,9 @@ abstract class AbstractService implements ServiceInterface
     {
         return $this->requestData;
     }
-    
+
     /**
-     * Returns an array of field names that need to be set before the service can pass validation
+     * Returns an array of field names that need to be set before the service can pass validation.
      *
      * @return array
      */
@@ -75,13 +76,13 @@ abstract class AbstractService implements ServiceInterface
     {
         return $this->requiredFields;
     }
-    
+
     /**
-     * Checks that all required fields in the payload are set and returns a TRUE or FALSE
-     *
-     * @return bool
+     * Checks that all required fields in the payload are set and returns a TRUE or FALSE.
      *
      * @throws ValidationException
+     *
+     * @return bool
      */
     public function validatePayload(): bool
     {
@@ -97,16 +98,17 @@ abstract class AbstractService implements ServiceInterface
         if (!empty($missingKeys)) {
             throw new ValidationException('Some required fields have not been set: '.implode(', ', $missingKeys));
         }
+
         return true;
     }
-    
+
     /**
      * Sends the request to the endpoint.
      * There is the possibility of an unsuccessful request status, that should be watched out for.
      *
-     * @return MoneywaveResponse
-     *
      * @throws ValidationException
+     *
+     * @return MoneywaveResponse
      */
     public function send(): MoneywaveResponse
     {
@@ -115,14 +117,16 @@ abstract class AbstractService implements ServiceInterface
         if (!empty($this->moneyWave->getAccessToken())) {
             $headers['Authorization'] = $this->moneyWave->getAccessToken();
         }
+
         try {
             $response = $this->moneyWave->getHttpClient()->request($this->getRequestMethod(), $this->getRequestPath(), [
-                RequestOptions::JSON => $this->getPayload(),
-                RequestOptions::HEADERS => $headers
+                RequestOptions::JSON    => $this->getPayload(),
+                RequestOptions::HEADERS => $headers,
             ]);
+
             return new MoneywaveResponse((string) $response->getBody());
         } catch (BadResponseException $e) {
-            # in the case of a failure, let's know the status
+            // in the case of a failure, let's know the status
             $e->getRequest()->getBody()->rewind();
             $size = $e->getRequest()->getBody()->getSize() ?: 1024;
             $bodyParams = json_decode($e->getRequest()->getBody()->read($size), true);
@@ -132,26 +136,28 @@ abstract class AbstractService implements ServiceInterface
                 $e->getResponse()->getStatusCode().': '.$e->getResponse()->getReasonPhrase(),
                 [
                     'endpoint' => $e->getRequest()->getUri()->getPath(),
-                    'params' => $bodyParams,
-                    'response' => $jsonData ?: $serverResponse
+                    'params'   => $bodyParams,
+                    'response' => $jsonData ?: $serverResponse,
                 ]
             );
+
             return new MoneywaveResponse((string) $e->getResponse()->getBody());
         } catch (ConnectException $e) {
             $this->moneyWave->getLogger()->error($e->getMessage());
+
             return new MoneywaveResponse('{"status": "error", "data": "'.$e->getMessage().'"}');
         }
     }
-    
+
     /**
-     * Returns the HTTP request method for the service
+     * Returns the HTTP request method for the service.
      *
      * @return string
      */
     abstract public function getRequestMethod(): string;
-    
+
     /**
-     * Returns the API request path for the service
+     * Returns the API request path for the service.
      *
      * @return string
      */

@@ -9,7 +9,6 @@ use Emmanix2002\Moneywave\Moneywave;
 /**
  * Disburse funds from your Moneywave wallet to a single bank account.
  *
- * @package Emmanix2002\Moneywave\Service
  *
  * @property string $lock           the password of your wallet
  * @property float  $amount         the amount to send to the beneficiary
@@ -33,9 +32,9 @@ class Disburse extends AbstractService
         $this->requestData['currency'] = Currency::NAIRA;
         $this->setRequiredFields('lock', 'amount', 'bankcode', 'accountNumber', 'currency', 'senderName');
     }
-    
+
     /**
-     * Returns the HTTP request method for the service
+     * Returns the HTTP request method for the service.
      *
      * @return string
      */
@@ -43,9 +42,9 @@ class Disburse extends AbstractService
     {
         return 'POST';
     }
-    
+
     /**
-     * Returns the API request path for the service
+     * Returns the API request path for the service.
      *
      * @return string
      */

@@ -13,7 +13,6 @@ use Emmanix2002\Moneywave\Moneywave;
  * account name. To do that, you need to send a POST request to /v1/resolve/account, with the account number and bank
  * code in the body of the request.
  *
- * @package Emmanix2002\Moneywave\Service
  *
  * @property string $account_number the account number to be resolved
  * @property string $bank_code      the bank code for the account number to be resolved
@@ -30,9 +29,9 @@ class AccountNumberValidation extends AbstractService
         parent::__construct($moneyWave);
         $this->setRequiredFields('account_number', 'bank_code');
     }
-    
+
     /**
-     * Returns the HTTP request method for the service
+     * Returns the HTTP request method for the service.
      *
      * @return string
      */
@@ -40,9 +39,9 @@ class AccountNumberValidation extends AbstractService
     {
         return 'POST';
     }
-    
+
     /**
-     * Returns the API request path for the service
+     * Returns the API request path for the service.
      *
      * @return string
      */

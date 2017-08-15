@@ -24,7 +24,6 @@ use Emmanix2002\Moneywave\MoneywaveResponse;
  * Zenith Bank
  * First Bank
  *
- * @package Emmanix2002\Moneywave\Service
  *
  * @property string $apiKey             the Moneywave API key (default: Moneywave::getApiKey())
  * @property string $recipient          the cash recipient (default: wallet)
@@ -38,7 +37,6 @@ use Emmanix2002\Moneywave\MoneywaveResponse;
  * @property string $sender_bank        the bank code for the account to be billed
  * @property string $charge_with        charge method, should be set to ext_account. One of the ChargeMethod::* constants
  * @property string $card_auth          should be set to INTERNETBANKING
- *
  */
 class InternetBankingToWallet extends AbstractService
 {
@@ -69,9 +67,9 @@ class InternetBankingToWallet extends AbstractService
             'sender_bank'
         );
     }
-    
+
     /**
-     * Returns the HTTP request method for the service
+     * Returns the HTTP request method for the service.
      *
      * @return string
      */
@@ -79,9 +77,9 @@ class InternetBankingToWallet extends AbstractService
     {
         return 'POST';
     }
-    
+
     /**
-     * Returns the API request path for the service
+     * Returns the API request path for the service.
      *
      * @return string
      */
@@ -89,22 +87,23 @@ class InternetBankingToWallet extends AbstractService
     {
         return Endpoints::TRANSFER;
     }
-    
+
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      *
      * @throws \UnexpectedValueException
      */
     public function send(): MoneywaveResponse
     {
         $allowedBanks = array_keys(Banks::getSupportedBanksForInternetBanking());
-        # the allowed banks
+        // the allowed banks
         if (!in_array($this->requestData['sender_bank'], $allowedBanks)) {
             throw new \UnexpectedValueException(
                 'InternetBanking billing is only supported for the following Bank sender_banks: '.
                 implode(', ', $allowedBanks)
             );
         }
+
         return parent::send();
     }
 }

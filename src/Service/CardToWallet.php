@@ -9,8 +9,6 @@ use Emmanix2002\Moneywave\Moneywave;
  * Transfer funds from a card to a your Moneywave wallet.
  *
  * The chief premise of this solution is that you can charge any card in the world and pay into your wallet..
- *
- * @package Emmanix2002\Moneywave\Service
  */
 class CardToWallet extends CardTransfer
 {

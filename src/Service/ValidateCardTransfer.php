@@ -11,7 +11,6 @@ use Emmanix2002\Moneywave\Moneywave;
  * Verve Cards will be charged using PIN, the bank determines if they want an extra level of validation; if they do,
  * response code will be 02, and that means you have to validate the transaction.
  *
- * @package Emmanix2002\Moneywave\Service
  *
  * @property string $transactionRef the flutterChargeReference key value from the success transfer object
  * @property string $otp            the authorization value. E.g. the OTP token
@@ -28,9 +27,9 @@ class ValidateCardTransfer extends AbstractService
         parent::__construct($moneyWave);
         $this->setRequiredFields('transactionRef', 'otp');
     }
-    
+
     /**
-     * Returns the HTTP request method for the service
+     * Returns the HTTP request method for the service.
      *
      * @return string
      */
@@ -38,9 +37,9 @@ class ValidateCardTransfer extends AbstractService
     {
         return 'POST';
     }
-    
+
     /**
-     * Returns the API request path for the service
+     * Returns the API request path for the service.
      *
      * @return string
      */

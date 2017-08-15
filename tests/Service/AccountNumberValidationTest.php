@@ -11,27 +11,26 @@ use PHPUnit\Framework\TestCase;
 
 class AccountNumberValidationTest extends TestCase
 {
-    /** @var  AccountNumberValidation */
+    /** @var AccountNumberValidation */
     private $serviceObject;
-    
+
     public function setUp()
     {
         $moneywave = new Moneywave(ACCESS_TOKEN, API_KEY, SECRET_KEY, Environment::STAGING);
         $this->serviceObject = $moneywave->createAccountNumberValidationService();
     }
-    
+
     public function testRequestMethod()
     {
         $this->assertEquals('post', strtolower($this->serviceObject->getRequestMethod()));
     }
-    
-    
+
     public function testFailsValidation()
     {
         $this->expectException(ValidationException::class);
         $this->serviceObject->validatePayload();
     }
-    
+
     public function testPassValidation()
     {
         $this->serviceObject->account_number = '0123456789';

@@ -12,7 +12,6 @@ use Emmanix2002\Moneywave\Moneywave;
  * account fails. To retry these types of transactions, you need to send a POST request to /v1/transfer/disburse/retry,
  * with the id of the successful charge, recipient_account_number and recipient_bank (bankcode).
  *
- * @package Emmanix2002\Moneywave\Service
  *
  * @property string $id                         the id of a successfully charged transfer
  * @property string $recipient_account_number   (optional) disburse destination account number
@@ -30,9 +29,9 @@ class RetryFailedTransfer extends AbstractService
         parent::__construct($moneyWave);
         $this->setRequiredFields('id');
     }
-    
+
     /**
-     * Returns the HTTP request method for the service
+     * Returns the HTTP request method for the service.
      *
      * @return string
      */
@@ -40,9 +39,9 @@ class RetryFailedTransfer extends AbstractService
     {
         return 'POST';
     }
-    
+
     /**
-     * Returns the API request path for the service
+     * Returns the API request path for the service.
      *
      * @return string
      */

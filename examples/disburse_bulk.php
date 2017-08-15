@@ -1,9 +1,10 @@
 <?php
+
 use Emmanix2002\Moneywave\Enum\Banks;
 use Emmanix2002\Moneywave\Exception\ValidationException;
 use Emmanix2002\Moneywave\Moneywave;
 
-require(dirname(__DIR__).'/vendor/autoload.php');
+require dirname(__DIR__).'/vendor/autoload.php';
 session_start();
 
 try {
@@ -19,8 +20,8 @@ try {
     $response = $bulkDisbursement->send();
     dump($response->getRawResponse());
     dump([
-       'Failed transactions' => $response->failed,
-        'Successful transactions' => $response->passed
+       'Failed transactions'      => $response->failed,
+        'Successful transactions' => $response->passed,
     ]);
     dump($response->getData());
     dump($response->getMessage());
