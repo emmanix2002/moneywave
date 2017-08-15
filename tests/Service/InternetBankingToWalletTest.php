@@ -12,27 +12,26 @@ use PHPUnit\Framework\TestCase;
 
 class InternetBankingToWalletTest extends TestCase
 {
-    /** @var  InternetBankingToWallet */
+    /** @var InternetBankingToWallet */
     private $serviceObject;
-    
+
     public function setUp()
     {
         $moneywave = new Moneywave(ACCESS_TOKEN, API_KEY, SECRET_KEY, Environment::STAGING);
         $this->serviceObject = $moneywave->createInternetBankingToWalletService();
     }
-    
+
     public function testRequestMethod()
     {
         $this->assertEquals('post', strtolower($this->serviceObject->getRequestMethod()));
     }
-    
-    
+
     public function testFailsValidation()
     {
         $this->expectException(ValidationException::class);
         $this->serviceObject->validatePayload();
     }
-    
+
     public function testUnsupportedBankValidation()
     {
         $this->expectException(\UnexpectedValueException::class);
@@ -46,7 +45,7 @@ class InternetBankingToWalletTest extends TestCase
         $this->serviceObject->sender_bank = Banks::GTBANK_MOBILE_MONEY;
         $this->serviceObject->send();
     }
-    
+
     public function testPassValidation()
     {
         $this->serviceObject->firstname = 'firstname';

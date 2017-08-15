@@ -13,13 +13,11 @@ use Emmanix2002\Moneywave\Enum\Endpoints;
  * using Moneywave.
  *
  * You can also get the Bank codes from the Emmanix2002\Moneywave\Enum\Banks class
- *
- * @package Emmanix2002\Moneywave\Service
  */
 class Banks extends AbstractService
 {
     /**
-     * Returns the HTTP request method for the service
+     * Returns the HTTP request method for the service.
      *
      * @return string
      */
@@ -27,9 +25,9 @@ class Banks extends AbstractService
     {
         return 'POST';
     }
-    
+
     /**
-     * Returns the API request path for the service
+     * Returns the API request path for the service.
      *
      * @return string
      */

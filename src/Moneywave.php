@@ -22,13 +22,12 @@ use Emmanix2002\Moneywave\Service\QueryCardToAccountTransfer;
 use Emmanix2002\Moneywave\Service\QueryDisbursement;
 use Emmanix2002\Moneywave\Service\RetryFailedTransfer;
 use Emmanix2002\Moneywave\Service\TotalChargeToCard;
-use Emmanix2002\Moneywave\Service\ValidateCardTransfer;
 use Emmanix2002\Moneywave\Service\ValidateAccountTransfer;
+use Emmanix2002\Moneywave\Service\ValidateCardTransfer;
 use Emmanix2002\Moneywave\Service\VerifyMerchant;
 use Emmanix2002\Moneywave\Service\WalletBalance;
 use GuzzleHttp\Client;
 use GuzzleHttp\RequestOptions;
-use Monolog\Handler\ChromePHPHandler;
 use Monolog\Handler\ErrorLogHandler;
 use Monolog\Logger;
 use Psr\Log\LoggerInterface;
@@ -52,7 +51,6 @@ use Psr\Log\LoggerInterface;
  * For more examples, check out the contents of the example directory.
  *
  *
- * @package Emmanix2002\Moneywave
  *
  * @method AccountNumberValidation      createAccountNumberValidationService()
  * @method AccountToAccount             createAccountToAccountService()
@@ -79,30 +77,30 @@ use Psr\Log\LoggerInterface;
  */
 class Moneywave
 {
-    /** @var array  */
+    /** @var array */
     private $envUrls = [
         Environment::PRODUCTION => 'https://live.moneywaveapi.co/',
-        Environment::STAGING => 'https://moneywave.herokuapp.com/'
+        Environment::STAGING    => 'https://moneywave.herokuapp.com/',
     ];
-    
-    /** @var string  */
+
+    /** @var string */
     private $environment = Environment::STAGING;
-    
-    /** @var null|string  */
+
+    /** @var null|string */
     private $apiKey = null;
-    
-    /** @var null|string  */
+
+    /** @var null|string */
     private $secretKey = null;
-    
-    /** @var Client  */
+
+    /** @var Client */
     private $httpClient;
-    
-    /** @var null|string  */
+
+    /** @var null|string */
     private $accessToken = null;
-    
-    /** @var null|LoggerInterface  */
+
+    /** @var null|LoggerInterface */
     private $logger = null;
-    
+
     /**
      * Moneywave constructor.
      *
@@ -132,16 +130,16 @@ class Moneywave
             $this->verifyMerchant();
         }
     }
-    
+
     /**
-     * This method is responsible for creating wrappers around the services
+     * This method is responsible for creating wrappers around the services.
      *
      * @param string $name
      * @param string $arguments
      *
-     * @return $this
-     *
      * @throws UnknownServiceException
+     *
+     * @return $this
      */
     public function __call($name, $arguments)
     {
@@ -156,20 +154,23 @@ class Moneywave
                 if (!class_exists($className)) {
                     throw new UnknownServiceException('Unknown service '.$serviceName);
                 }
+
                 return new $className($this);
                 break;
         }
+
         return $this;
     }
-    
+
     /**
      * It sets the operating environment for all calls.
      * It sets the environment, as well as adjusts the base_uri used for making requests in the Http Client.
      *
-     * @param string $environment   One of the Environment::* values
+     * @param string $environment One of the Environment::* values
+     *
+     * @throws \InvalidArgumentException
      *
      * @return Moneywave
-     * @throws \InvalidArgumentException
      */
     public function setEnvironment(string $environment): Moneywave
     {
@@ -179,13 +180,14 @@ class Moneywave
         }
         $this->environment = $environment;
         $this->httpClient = new Client([
-            'base_uri' => $this->envUrls[$this->environment],
-            RequestOptions::TIMEOUT => 60.0,
-            RequestOptions::CONNECT_TIMEOUT => 60.0
+            'base_uri'                      => $this->envUrls[$this->environment],
+            RequestOptions::TIMEOUT         => 60.0,
+            RequestOptions::CONNECT_TIMEOUT => 60.0,
         ]);
+
         return $this;
     }
-    
+
     /**
      * Loads the environment variables.
      * If this library was not installed using composer, it loads settings from the library's root directory, else
@@ -198,17 +200,18 @@ class Moneywave
         try {
             $vendorDir = dirname(__DIR__, 3);
             $loadDir = substr($vendorDir, -6) === 'vendor' ? dirname($vendorDir) : dirname(__DIR__);
-            # if the /vendor path doesn't exist in the variable, use the current directory, else use the project dir
+            // if the /vendor path doesn't exist in the variable, use the current directory, else use the project dir
             $dotEnv = new Dotenv($loadDir);
             $dotEnv->load();
         } catch (InvalidPathException $e) {
             $this->logger->debug($e->getMessage());
         }
+
         return $this;
     }
-    
+
     /**
-     * Returns the API key as a string
+     * Returns the API key as a string.
      *
      * @return string
      */
@@ -216,9 +219,9 @@ class Moneywave
     {
         return (string) $this->apiKey;
     }
-    
+
     /**
-     * Returns the secret key as a string
+     * Returns the secret key as a string.
      *
      * @return string
      */
@@ -226,9 +229,9 @@ class Moneywave
     {
         return (string) $this->secretKey;
     }
-    
+
     /**
-     * Returns the access token to be used for authorising requests
+     * Returns the access token to be used for authorising requests.
      *
      * @return string
      */
@@ -236,9 +239,9 @@ class Moneywave
     {
         return (string) $this->accessToken;
     }
-    
+
     /**
-     * Returns the Guzzle Http client instantiated for the class
+     * Returns the Guzzle Http client instantiated for the class.
      *
      * @return Client
      */
@@ -246,9 +249,9 @@ class Moneywave
     {
         return $this->httpClient;
     }
-    
+
     /**
-     * Returns the logger
+     * Returns the logger.
      *
      * @return LoggerInterface
      */
@@ -256,9 +259,9 @@ class Moneywave
     {
         return $this->logger;
     }
-    
+
     /**
-     * Sets up a logger for the package
+     * Sets up a logger for the package.
      *
      * @return LoggerInterface
      */
@@ -266,9 +269,10 @@ class Moneywave
     {
         $logger = new Logger(__CLASS__);
         $logger->pushHandler(new ErrorLogHandler(ErrorLogHandler::OPERATING_SYSTEM, Logger::WARNING));
+
         return $logger;
     }
-    
+
     /**
      * Verifies the merchant against the API for a session.
      * This verifies the merchant and gets an access token for authorizing other requests in a response.

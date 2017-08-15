@@ -8,7 +8,6 @@ use Emmanix2002\Moneywave\Moneywave;
 /**
  * You can tokenize a card and use the token for initiate a card to account transfer request.
  *
- * @package Emmanix2002\Moneywave\Service
  *
  * @property string $card_no        the card number of the debit card
  * @property string $cvv            the CVV of the debit card
@@ -27,9 +26,9 @@ class CardTokenization extends AbstractService
         parent::__construct($moneyWave);
         $this->setRequiredFields('card_no', 'cvv', 'expiry_month', 'expiry_year');
     }
-    
+
     /**
-     * Returns the HTTP request method for the service
+     * Returns the HTTP request method for the service.
      *
      * @return string
      */
@@ -37,9 +36,9 @@ class CardTokenization extends AbstractService
     {
         return 'POST';
     }
-    
+
     /**
-     * Returns the API request path for the service
+     * Returns the API request path for the service.
      *
      * @return string
      */

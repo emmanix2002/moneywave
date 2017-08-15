@@ -4,7 +4,6 @@ namespace Emmanix2002\Moneywave\Service;
 
 use Emmanix2002\Moneywave\Enum\ChargeMethod;
 use Emmanix2002\Moneywave\Enum\Endpoints;
-use Emmanix2002\Moneywave\Enum\TransferRecipient;
 use Emmanix2002\Moneywave\Moneywave;
 
 /**
@@ -13,7 +12,6 @@ use Emmanix2002\Moneywave\Moneywave;
  * The chief premise of this solution is that you can charge any card in the world and deposit the funds to your wallet
  * in that currency.
  *
- * @package Emmanix2002\Moneywave\Service
  *
  * @property string $apiKey             the Moneywave API key (default: Moneywave::getApiKey())
  * @property string $recipient          the cash recipient (default: wallet)
@@ -67,9 +65,9 @@ class CardTransfer extends AbstractService
             'charge_with'
         );
     }
-    
+
     /**
-     * Returns the HTTP request method for the service
+     * Returns the HTTP request method for the service.
      *
      * @return string
      */
@@ -77,9 +75,9 @@ class CardTransfer extends AbstractService
     {
         return 'POST';
     }
-    
+
     /**
-     * Returns the API request path for the service
+     * Returns the API request path for the service.
      *
      * @return string
      */

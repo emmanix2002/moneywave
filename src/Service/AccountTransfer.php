@@ -12,7 +12,6 @@ use Emmanix2002\Moneywave\Moneywave;
  * The chief premise of this solution is that you can charge any bank account and deposit the funds to your wallet or
  * another bank account.
  *
- * @package Emmanix2002\Moneywave\Service
  *
  * @property string $apiKey             the Moneywave API key (default: Moneywave::getApiKey())
  * @property string $recipient          the cash recipient (default: wallet)
@@ -59,9 +58,9 @@ class AccountTransfer extends AbstractService
             'sender_bank'
         );
     }
-    
+
     /**
-     * Returns the HTTP request method for the service
+     * Returns the HTTP request method for the service.
      *
      * @return string
      */
@@ -69,9 +68,9 @@ class AccountTransfer extends AbstractService
     {
         return 'POST';
     }
-    
+
     /**
-     * Returns the API request path for the service
+     * Returns the API request path for the service.
      *
      * @return string
      */

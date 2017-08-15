@@ -12,27 +12,26 @@ use PHPUnit\Framework\TestCase;
 
 class CardToBankAccountTest extends TestCase
 {
-    /** @var  CardToBankAccount */
+    /** @var CardToBankAccount */
     private $serviceObject;
-    
+
     public function setUp()
     {
         $moneywave = new Moneywave(ACCESS_TOKEN, API_KEY, SECRET_KEY, Environment::STAGING);
         $this->serviceObject = $moneywave->createCardToBankAccountService();
     }
-    
+
     public function testRequestMethod()
     {
         $this->assertEquals('post', strtolower($this->serviceObject->getRequestMethod()));
     }
-    
-    
+
     public function testFailsValidation()
     {
         $this->expectException(ValidationException::class);
         $this->serviceObject->validatePayload();
     }
-    
+
     public function testPassValidation()
     {
         $this->serviceObject->firstname = 'firstname';

@@ -11,7 +11,6 @@ use Emmanix2002\Moneywave\Moneywave;
  * It’s inevitable that you’d eventually need to see your records of previous transactions whether successful or not.
  * To gain access to this information, you need to send a POST request to /v1/disburse/status.
  *
- * @package Emmanix2002\Moneywave\Service
  *
  * @property string $ref    the UNIQUE reference for the disbursement to be queried
  */
@@ -27,9 +26,9 @@ class QueryDisbursement extends AbstractService
         parent::__construct($moneyWave);
         $this->setRequiredFields('ref');
     }
-    
+
     /**
-     * Returns the HTTP request method for the service
+     * Returns the HTTP request method for the service.
      *
      * @return string
      */
@@ -37,9 +36,9 @@ class QueryDisbursement extends AbstractService
     {
         return 'POST';
     }
-    
+
     /**
-     * Returns the API request path for the service
+     * Returns the API request path for the service.
      *
      * @return string
      */

@@ -11,27 +11,26 @@ use PHPUnit\Framework\TestCase;
 
 class DisburseTest extends TestCase
 {
-    /** @var  Disburse */
+    /** @var Disburse */
     private $serviceObject;
-    
+
     public function setUp()
     {
         $moneywave = new Moneywave(ACCESS_TOKEN, API_KEY, SECRET_KEY, Environment::STAGING);
         $this->serviceObject = $moneywave->createDisburseService();
     }
-    
+
     public function testRequestMethod()
     {
         $this->assertEquals('post', strtolower($this->serviceObject->getRequestMethod()));
     }
-    
-    
+
     public function testFailsValidation()
     {
         $this->expectException(ValidationException::class);
         $this->serviceObject->validatePayload();
     }
-    
+
     public function testPassValidation()
     {
         $this->serviceObject->lock = 'wallet password';

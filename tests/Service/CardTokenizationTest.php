@@ -10,26 +10,26 @@ use PHPUnit\Framework\TestCase;
 
 class CardTokenizationTest extends TestCase
 {
-    /** @var  CardTokenization */
+    /** @var CardTokenization */
     private $serviceObject;
-    
+
     public function setUp()
     {
         $moneywave = new Moneywave(ACCESS_TOKEN, API_KEY, SECRET_KEY, Environment::STAGING);
         $this->serviceObject = $moneywave->createCardTokenizationService();
     }
-    
+
     public function testRequestMethod()
     {
         $this->assertEquals('post', strtolower($this->serviceObject->getRequestMethod()));
     }
-    
+
     public function testFailsValidation()
     {
         $this->expectException(ValidationException::class);
         $this->serviceObject->validatePayload();
     }
-    
+
     public function testPassValidation()
     {
         $this->serviceObject->card_no = '4267888899993333';

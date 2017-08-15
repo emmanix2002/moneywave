@@ -9,8 +9,6 @@ use Emmanix2002\Moneywave\Moneywave;
  * Transfer funds from a bank account to a Moneywave wallet.
  *
  * The chief premise of this solution is that you can charge any bank account and deposit the funds to your wallet.
- *
- * @package Emmanix2002\Moneywave\Service
  */
 class AccountToWallet extends AccountTransfer
 {

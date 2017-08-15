@@ -13,7 +13,6 @@ use Emmanix2002\Moneywave\Moneywave;
  * Our Live bank accounts require validation to be charged, this could come as a OTP or ACCOUNT_CREDIT.
  * Response code will be 02 will mean you have to validate the transaction.
  *
- * @package Emmanix2002\Moneywave\Service
  *
  * @property string $transactionRef the flutterChargeReference key value from the success transfer object
  * @property string $authType       the authorization type. One of the AuthorizationType::* constants
@@ -31,9 +30,9 @@ class ValidateAccountTransfer extends AbstractService
         parent::__construct($moneyWave);
         $this->setRequiredFields('transactionRef', 'authType', 'authValue');
     }
-    
+
     /**
-     * Returns the HTTP request method for the service
+     * Returns the HTTP request method for the service.
      *
      * @return string
      */
@@ -41,9 +40,9 @@ class ValidateAccountTransfer extends AbstractService
     {
         return 'POST';
     }
-    
+
     /**
-     * Returns the API request path for the service
+     * Returns the API request path for the service.
      *
      * @return string
      */

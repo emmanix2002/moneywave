@@ -12,7 +12,6 @@ use Emmanix2002\Moneywave\Moneywave;
  * own fee you want to charge your customer for the service. To get the total amount we’ll charge
  * (all fees+transfer amount), you need to call the /v1/get-charge endpoint.
  *
- * @package Emmanix2002\Moneywave\Service
  *
  * @property float  $amount the amount to charge the card for
  * @property float  $fee    the service fee to charge on behalf of the merchant (default: 0)
@@ -30,9 +29,9 @@ class TotalChargeToCard extends AbstractService
         $this->fee = 0;
         $this->setRequiredFields('amount', 'fee');
     }
-    
+
     /**
-     * Returns the HTTP request method for the service
+     * Returns the HTTP request method for the service.
      *
      * @return string
      */
@@ -40,9 +39,9 @@ class TotalChargeToCard extends AbstractService
     {
         return 'POST';
     }
-    
+
     /**
-     * Returns the API request path for the service
+     * Returns the API request path for the service.
      *
      * @return string
      */

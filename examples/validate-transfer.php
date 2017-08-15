@@ -4,7 +4,7 @@ use Emmanix2002\Moneywave\Enum\AuthorizationType;
 use Emmanix2002\Moneywave\Exception\ValidationException;
 use Emmanix2002\Moneywave\Moneywave;
 
-require(dirname(__DIR__) . '/vendor/autoload.php');
+require dirname(__DIR__).'/vendor/autoload.php';
 session_start();
 
 try {

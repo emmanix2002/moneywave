@@ -12,7 +12,6 @@ use Emmanix2002\Moneywave\Moneywave;
  * The token represents you as a merchant and grants you access to every other endpoint.
  * Please note that the tokens expire after 2hrs.
  *
- * @package Emmanix2002\Moneywave\Service
  *
  * @property string $apiKey the Moneywave API key (default: Moneywave::getApiKey())
  * @property string $secret the Moneywave API secret (default: Moneywave::getApiSecret())
@@ -28,9 +27,9 @@ class VerifyMerchant extends AbstractService
         $this->secret = $this->moneyWave->getSecretKey();
         $this->setRequiredFields('apiKey', 'secret');
     }
-    
+
     /**
-     * Returns the HTTP request method for the service
+     * Returns the HTTP request method for the service.
      *
      * @return string
      */
@@ -38,9 +37,9 @@ class VerifyMerchant extends AbstractService
     {
         return 'POST';
     }
-    
+
     /**
-     * Returns the API request path for the service
+     * Returns the API request path for the service.
      *
      * @return string
      */
