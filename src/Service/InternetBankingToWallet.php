@@ -32,7 +32,7 @@ use Emmanix2002\Moneywave\MoneywaveResponse;
  * @property string $phonenumber        the card owner's phone number in international format (e.g. +23481...)
  * @property string $email              the card owner's email
  * @property float  $amount             the amount to charge to the card
- * @property string $redirect_url        the URL to redirect to after the transaction has been successfully validated
+ * @property string $redirecturl        the URL to redirect to after the transaction has been successfully validated
  * @property string $medium             the request medium. One of the PaymentMedium::* constants
  * @property string $sender_bank        the bank code for the account to be billed
  * @property string $charge_with        charge method, should be set to ext_account. One of the ChargeMethod::* constants
@@ -60,7 +60,7 @@ class InternetBankingToWallet extends AbstractService
             'phonenumber',
             'email',
             'amount',
-            'redirect_url',
+            'redirecturl',
             'medium',
             'charge_with',
             'charge_auth',
