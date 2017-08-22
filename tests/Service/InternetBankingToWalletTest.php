@@ -53,7 +53,7 @@ class InternetBankingToWalletTest extends TestCase
         $this->serviceObject->phonenumber = '+2348123456789';
         $this->serviceObject->email = 'username@domain.com';
         $this->serviceObject->amount = 10;
-        $this->serviceObject->redirect_url = 'localhost:8000';
+        $this->serviceObject->redirecturl = 'localhost:8000';
         $this->serviceObject->medium = PaymentMedium::MOBILE;
         $this->serviceObject->sender_bank = Banks::GTBANK;
         $this->assertTrue($this->serviceObject->validatePayload());
