@@ -10,6 +10,12 @@ use Emmanix2002\Moneywave\Moneywave;
 use Emmanix2002\Moneywave\Service\InternetBankingToWallet;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * Class InternetBankingToWalletTest
+ * @package Emmanix2002\Moneywave\Tests\Service
+ *
+ * @link https://moneywave-doc.herokuapp.com/index.html#pay-with-internet-banking
+ */
 class InternetBankingToWalletTest extends TestCase
 {
     /** @var InternetBankingToWallet */

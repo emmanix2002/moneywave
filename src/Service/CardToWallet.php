@@ -9,6 +9,8 @@ use Emmanix2002\Moneywave\Moneywave;
  * Transfer funds from a card to a your Moneywave wallet.
  *
  * The chief premise of this solution is that you can charge any card in the world and pay into your wallet..
+ *
+ * @link https://moneywave-doc.herokuapp.com/index.html#card-to-wallet
  */
 class CardToWallet extends CardTransfer
 {

@@ -104,12 +104,10 @@ class MoneywaveResponse
     /**
      * Returns the value of the "data" key in the response if available, else it returns the parsed response.
      *
-     * @return array
+     * @return array|string
      */
-    public function getData(): array
+    public function getData()
     {
-        $data = $this->data['data'] ?? $this->data;
-
-        return is_string($data) ? $this->decodeJson($data) : $data;
+        return $this->data['data'] ?? $this->data;
     }
 }

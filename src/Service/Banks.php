@@ -13,6 +13,8 @@ use Emmanix2002\Moneywave\Enum\Endpoints;
  * using Moneywave.
  *
  * You can also get the Bank codes from the Emmanix2002\Moneywave\Enum\Banks class
+ *
+ * @link https://moneywave-doc.herokuapp.com/index.html#get-list-of-banks
  */
 class Banks extends AbstractService
 {

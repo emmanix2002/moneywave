@@ -16,7 +16,7 @@ use Emmanix2002\Moneywave\Moneywave;
  * @property string $apiKey the Moneywave API key (default: Moneywave::getApiKey())
  * @property string $secret the Moneywave API secret (default: Moneywave::getApiSecret())
  *
- * @link https://moneywave.flutterwave.com/api#1
+ * @link https://moneywave-doc.herokuapp.com/index.html#get-access-token
  */
 class VerifyMerchant extends AbstractService
 {

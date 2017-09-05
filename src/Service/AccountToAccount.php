@@ -10,6 +10,8 @@ use Emmanix2002\Moneywave\Moneywave;
  *
  * The chief premise of this solution is that you can charge any bank account and deposit the funds to another bank
  * account in one of the supported countries.
+ *
+ * @link https://moneywave-doc.herokuapp.com/index.html#account-to-account-access-bank-only
  */
 class AccountToAccount extends AccountTransfer
 {

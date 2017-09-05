@@ -18,6 +18,8 @@ use Emmanix2002\Moneywave\Moneywave;
  * @property string $senderName     the name of the sender
  * @property string $ref            a UNIQUE reference code for this transaction
  * @property string $narration      some more details about the transaction
+ *
+ * @link https://moneywave-doc.herokuapp.com/index.html#wallet-to-account-single
  */
 class Disburse extends AbstractService
 {

@@ -16,6 +16,8 @@ use Emmanix2002\Moneywave\Moneywave;
  * @property string $id                         the id of a successfully charged transfer
  * @property string $recipient_account_number   (optional) disburse destination account number
  * @property string $recipient_bank             (optional) disburse destination bank code. One of the Banks::* constants
+ *
+ * @link https://moneywave-doc.herokuapp.com/index.html#failed-transaction-retrial
  */
 class RetryFailedTransfer extends AbstractService
 {

@@ -25,7 +25,7 @@ use Emmanix2002\Moneywave\Moneywave;
  * @property string $expiry_month       the card's expiry year
  * @property float  $amount             the amount to charge to the card
  * @property float  $fee                the service fee to charge on behalf of the merchant (default: 0)
- * @property string $redirect_url        the URL to redirect to after the transaction has been successfully validated
+ * @property string $redirecturl        the URL to redirect to after the transaction has been successfully validated
  * @property string $medium             the request medium. One of the PaymentMedium::* constants
  * @property string $recipient_bank     (optional) the bank code to send money to; required for recipient "account"
  * @property string $recipient_account_number   (optional) the account number of the recipient in the recipient bank
@@ -60,7 +60,7 @@ class CardTransfer extends AbstractService
             'email',
             'amount',
             'fee',
-            'redirect_url',
+            'redirecturl',
             'medium',
             'charge_with'
         );

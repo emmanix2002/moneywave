@@ -16,6 +16,8 @@ use Emmanix2002\Moneywave\Moneywave;
  *
  * @property string $account_number the account number to be resolved
  * @property string $bank_code      the bank code for the account number to be resolved
+ *
+ * @link https://moneywave-doc.herokuapp.com/index.html#account-number-validation
  */
 class AccountNumberValidation extends AbstractService
 {

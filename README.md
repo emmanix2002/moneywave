@@ -6,7 +6,7 @@
 [![Total Downloads][ico-downloads]][link-downloads]
 
 A PHP library for consuming the Moneywave API services.    
-You can check out the documentation to see all that is available: [https://moneywave.flutterwave.com/api](https://moneywave.flutterwave.com/api)     
+You can check out the documentation to see all that is available: [https://moneywave-doc.herokuapp.com/](https://moneywave-doc.herokuapp.com/)     
 
 * [Quickstart](#quickstart)
 * [Introduction](#introduction)

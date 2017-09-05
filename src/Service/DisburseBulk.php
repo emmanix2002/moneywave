@@ -26,6 +26,8 @@ use Emmanix2002\Moneywave\MoneywaveResponse;
  * @property bool   $instantQueue   should always be set to true
  * @property string $narration      (optional) description of the transaction
  * @property string $disburse_callback_code   (optional) code that you use to verify POSTed responses
+ *
+ * @link https://moneywave-doc.herokuapp.com/index.html#wallet-to-account-bulk
  */
 class DisburseBulk extends AbstractService
 {

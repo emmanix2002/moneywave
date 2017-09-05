@@ -13,6 +13,8 @@ use Emmanix2002\Moneywave\Moneywave;
  * @property string $cvv            the CVV of the debit card
  * @property int    $expiry_month   the expiry month of the debit card
  * @property int    $expiry_year    the expiry year of the debit card
+ *
+ * @link https://moneywave-doc.herokuapp.com/index.html#card-tokenization
  */
 class CardTokenization extends AbstractService
 {

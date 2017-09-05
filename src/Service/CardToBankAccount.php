@@ -12,7 +12,7 @@ use Emmanix2002\Moneywave\Moneywave;
  * supported countries.
  *
  *
- * @link https://moneywave.flutterwave.com/api#2
+ * @link https://moneywave-doc.herokuapp.com/index.html#card-to-account
  */
 class CardToBankAccount extends CardTransfer
 {

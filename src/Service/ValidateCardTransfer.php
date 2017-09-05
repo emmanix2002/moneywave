@@ -14,6 +14,8 @@ use Emmanix2002\Moneywave\Moneywave;
  *
  * @property string $transactionRef the flutterChargeReference key value from the success transfer object
  * @property string $otp            the authorization value. E.g. the OTP token
+ *
+ * @link https://moneywave-doc.herokuapp.com/index.html#cards-to-account-wallet-validation
  */
 class ValidateCardTransfer extends AbstractService
 {

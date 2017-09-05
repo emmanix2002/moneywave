@@ -11,8 +11,9 @@ use Emmanix2002\Moneywave\Moneywave;
  * It’s inevitable that you’d eventually need to see your records of previous transactions whether successful or not.
  * To gain access to this information, you need to send a POST request to /v1/disburse/status.
  *
- *
  * @property string $ref    the UNIQUE reference for the disbursement to be queried
+ *
+ * @link https://moneywave-doc.herokuapp.com/index.html#previous-transactions-api-wallet-to-account
  */
 class QueryDisbursement extends AbstractService
 {

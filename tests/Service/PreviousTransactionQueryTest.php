@@ -5,18 +5,18 @@ namespace Emmanix2002\Moneywave\Tests\Service;
 use Emmanix2002\Moneywave\Enum\Endpoints;
 use Emmanix2002\Moneywave\Enum\Environment;
 use Emmanix2002\Moneywave\Moneywave;
-use Emmanix2002\Moneywave\Service\QueryCardToAccountTransfer;
+use Emmanix2002\Moneywave\Service\PreviousTransactionQuery;
 use PHPUnit\Framework\TestCase;
 
-class QueryCardToAccountTransferTest extends TestCase
+class PreviousTransactionQueryTest extends TestCase
 {
-    /** @var QueryCardToAccountTransfer */
+    /** @var PreviousTransactionQuery */
     private $serviceObject;
 
     public function setUp()
     {
         $moneywave = new Moneywave(ACCESS_TOKEN, API_KEY, SECRET_KEY, Environment::STAGING);
-        $this->serviceObject = $moneywave->createQueryCardToAccountTransferService();
+        $this->serviceObject = $moneywave->createPreviousTransactionQueryService();
     }
 
     public function testRequestMethod()

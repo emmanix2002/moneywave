@@ -9,6 +9,8 @@ use Emmanix2002\Moneywave\Enum\Endpoints;
  *
  * It’s inevitable that you’d want to know your wallet balance. To gain access to this information, you need to send a
  * GET request to /v1/wallet.
+ *
+ * @link https://moneywave-doc.herokuapp.com/index.html#get-wallet-balance
  */
 class WalletBalance extends AbstractService
 {

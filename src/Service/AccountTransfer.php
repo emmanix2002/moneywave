@@ -21,7 +21,7 @@ use Emmanix2002\Moneywave\Moneywave;
  * @property string $email              the account owner's email
  * @property float  $amount             the amount to charge to the account
  * @property float  $fee                the service fee to charge on behalf of the merchant (default: 0)
- * @property string $redirect_url       the URL to redirect to after the transaction has been successfully validated
+ * @property string $redirecturl        the URL to redirect to after the transaction has been successfully validated
  * @property string $medium             the request medium. One of the PaymentMedium::* constants
  * @property string $charge_with        charge method. One of the ChargeMethod::* constants
  * @property string $sender_account_number  charge source, required in "charge with" ChargeMethod::ACCOUNT
@@ -52,7 +52,7 @@ class AccountTransfer extends AbstractService
             'charge_with',
             'amount',
             'fee',
-            'redirect_url',
+            'redirecturl',
             'medium',
             'sender_account_number',
             'sender_bank'

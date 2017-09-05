@@ -15,6 +15,8 @@ use Emmanix2002\Moneywave\Moneywave;
  *
  * @property float  $amount the amount to charge the card for
  * @property float  $fee    the service fee to charge on behalf of the merchant (default: 0)
+ *
+ * @link https://moneywave-doc.herokuapp.com/index.html#get-total-charge-to-card
  */
 class TotalChargeToCard extends AbstractService
 {

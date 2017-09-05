@@ -12,8 +12,10 @@ use Emmanix2002\Moneywave\MoneywaveResponse;
  * It’s inevitable that you’d eventually need to see your records of previous transactions whether successful or not.
  * To gain access to this information, you need to send a POST request to /v1/transfer/:id, where the id
  * placeholder is the ID of the transaction you’re trying to query.
+ *
+ * @link https://moneywave-doc.herokuapp.com/index.html#previous-transactions-api-card-to-account
  */
-class QueryCardToAccountTransfer extends AbstractService
+class PreviousTransactionQuery extends AbstractService
 {
     /** @var string */
     private $transactionId;
@@ -23,9 +25,9 @@ class QueryCardToAccountTransfer extends AbstractService
      *
      * @param string $id the ID of the transaction to be queried
      *
-     * @return QueryCardToAccountTransfer
+     * @return PreviousTransactionQuery
      */
-    public function setTransactionId(string $id): QueryCardToAccountTransfer
+    public function setTransactionId(string $id): PreviousTransactionQuery
     {
         $this->transactionId = $id;
 
